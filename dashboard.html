@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PJAV – Overall Progress Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+    <script>
+        // Run auth check once script is loaded
+        document.addEventListener("DOMContentLoaded", requireAuth);
+    </script>
+</head>
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="dash-header">
+        <div class="dash-header-left">
+            <div class="status-pill">
+                <span>✅ Login Successful</span>
+            </div>
+            <div class="logo-strip">
+                <!-- Replace logo sources as needed -->
+                <img src="img/logo-spml.png" alt="SPML">
+                <img src="img/logo-dubaiholding.png" alt="Dubai Holding">
+                <img src="img/logo-tme.png" alt="TME">
+                <img src="img/logo-abuildtech.png" alt="ABuildtech">
+            </div>
+        </div>
+
+        <div class="dash-header-right">
+            <span id="user-label">Hello</span>
+            <button class="btn" style="background-color:#ef4444; color:#fff;" onclick="logout()">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- TITLE + BUTTONS -->
+    <main class="page-container">
+        <section class="dash-title-block">
+            <h1>Welcome to Shapoorji Pallonji Palm Jebel Ali – Villas Frond M &amp; N Overall Progress Dashboard</h1>
+            <p>
+                Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
+                to load during the initial access.
+            </p>
+        </section>
+
+        <section class="dash-buttons">
+            <!-- Replace href with actual link for Frond N dashboard -->
+            <a class="btn btn-dashboard" href="https://www.spmlpjav.work.gd/" target="_blank">
+                🟩 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
+            </a>
+
+            <!-- Replace href with actual link for Frond M dashboard -->
+            <a class="btn btn-dashboard" href="https://www.spmlpjav.work.gd/" target="_blank">
+                🟩 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
+            </a>
+        </section>
+
+        <section class="project-section">
+            <h2>📸 Project Highlights</h2>
+            <!-- Replace with villa render similar to screenshot -->
+            <img src="img/villa.jpg" alt="Project Highlight – Villa Render">
+        </section>
+
+        <div class="footer-credit">
+            by Sohail
+        </div>
+    </main>
+
+</body>
+</html>
