@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate This Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+
+<h2>Rate This Page</h2>
+
+<form onsubmit="submitRating(); return false;">
+    <label>Name:</label><br>
+    <input type="text" id="name" required><br><br>
+
+    <label>Rating (1–5):</label><br>
+    <input type="number" id="rating" min="1" max="5" required><br><br>
+
+    <label>Comment:</label><br>
+    <textarea id="comment"></textarea><br><br>
+
+    <button type="submit">Submit Rating</button>
+</form>
+
+<script src="rating.js"></script>
+
+</body>
+</html>
