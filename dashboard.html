@@ -1,300 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>PJAV – Overall Progress Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Palm Jebel Ali</title>
 
-  <style>
-    :root{
-      --bg: #e3f2fd;
-      --green: #2e7d32;
-      --btn: #00796B;
-      --btnHover: #004D40;
-      --danger: #d9534f;
-      --dangerHover: #c9302c;
-      --text: #1b1b1b;
-    }
+    <style>
+        body {
+            margin: 0;
+            background: #e1f0fb;
+            font-family: Arial, sans-serif;
+        }
 
-    html, body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-    }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #e1f0fb;
+        }
 
-    /* Top bar */
-    .topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 16px;
-      background: var(--bg);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      z-index: 1000;
-    }
+        .header-left img {
+            height: 40px;
+            margin-right: 10px;
+        }
 
-    .topbar-left {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-    .login-text {
-      font-weight: 600;
-      color: var(--green);
-      font-size: 16px;
-    }
+        .logout-btn {
+            background: #c0392b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
 
-    .image-row {
-      display: flex;
-      gap: 6px;
-    }
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
 
-    .image-row img {
-      height: 40px;
-      width: auto;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+        .villa-img {
+            width: 100%;
+            margin-bottom: 30px;
+        }
 
-    .topbar-center img {
-      height: 40px;
-      object-fit: contain;
-    }
+        /* Rating Box */
+        #rating-section {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
 
-    .topbar-right {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-    }
+        #rating-section h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .logout-btn {
-      background: var(--danger);
-      border: none;
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .logout-btn:hover { background: var(--dangerHover); }
+        #rating-section input,
+        #rating-section textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
 
-    .hello {
-      font-size: 14px;
-      font-weight: 600;
-    }
+        #rating-section button {
+            background: #2980b9;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    main {
-      padding: 120px 16px 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-    }
+        #rating-section button:hover {
+            background: #1f6fa5;
+        }
 
-    .subtext {
-      margin: 0 auto 6px;
-      max-width: 980px;
-      line-height: 1.6;
-    }
-
-    .welcome-text {
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .links {
-      margin-top: 28px;
-      text-align: left;
-    }
-
-    .links a {
-      display: inline-block;
-      margin: 10px 10px 10px 0;
-      padding: 12px 20px;
-      background-color: var(--btn);
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background-color 0.25s ease;
-      white-space: nowrap;
-    }
-    .links a:hover { background-color: var(--btnHover); }
-
-    .project-images {
-      margin-top: 26px;
-      text-align: center;
-    }
-    .project-images h3 {
-      margin: 18px 0 8px;
-      font-weight: 600;
-    }
-    .project-images img.project-img{
-      max-width: 980px;
-      width: 100%;
-      height: auto;
-      display:block;
-      margin:16px auto;
-      border-radius:10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .footer {
-      position: fixed;
-      bottom: 10px;
-      right: 20px;
-      font-size: 14px;
-      font-style: italic;
-      color: #555;
-    }
-
-    .toast {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      background: #263238;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      opacity: 0;
-      transition: opacity .2s;
-      pointer-events: none;
-    }
-    .toast.show { opacity: .95; }
-  </style>
+    </style>
 </head>
 <body>
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <div class="login-text">✅ Login Successful</div>
-      <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="Logo1">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="Logo2">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="Logo3">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="Logo4">
-      </div>
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="header-left">
+            <img src="img1.png">
+            <img src="img2.png">
+            <img src="img3.png">
+        </div>
+
+        <div class="header-center">
+            <img src="logo.png" style="height:50px;">
+        </div>
+
+        <div class="header-right">
+            <span id="username">Hello Test</span>
+            <a href="login.html" class="logout-btn">Logout</a>
+        </div>
+
     </div>
 
-    <div class="topbar-center">
-      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png" alt="Palm Jebel Ali">
-    </div>
+    <!-- MAIN DASHBOARD CONTENT -->
+    <h2>Login Successful</h2>
 
-    <div class="topbar-right">
-      <button class="logout-btn" onclick="logoutUser()">Logout</button>
-      <div id="welcomeText" class="hello">Hello</div>
-    </div>
-  </div>
+    <img src="villa1.jpg" class="villa-img">
+    <img src="villa2.jpg" class="villa-img">
+    <img src="villa3.jpg" class="villa-img">
 
-  <main>
-    <p class="subtext welcome-text">
-      Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
-    </p>
-    <p class="subtext">
-      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
-      to load during the initial access.
-    </p>
-<!-- Power BI link -->
-    <div class="links">
-      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
-      </a>
+    <!-- ⭐ RATING SECTION ⭐ -->
+    <section id="rating-section">
+        <h3>Rate This Page</h3>
 
-      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
-      </a>
-    </div>
+        <form onsubmit="submitRating(); return false;">
+            <label>Name:</label>
+            <input type="text" id="name" required>
 
-    <div class="project-images">
-      <h3>📸 Project Highlights</h3>
-      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" alt="Project 1" class="project-img">
-      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" alt="Project 2" class="project-img">
-    </div>
-  </main>
+            <label>Rating (1–5):</label>
+            <input type="number" id="rating" min="1" max="5" required>
 
-  <div class="footer">by Sohail</div>
-  <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
+            <label>Comment:</label>
+            <textarea id="comment"></textarea>
 
-  <!-- Auth + session protection -->
-  <script src="auth.js"></script>
-  <script>
-    // On load: if not logged in, kick back to login
-    document.addEventListener("DOMContentLoaded", () => {
-      if (!localStorage.getItem("pjav_logged_in_user")) {
-        window.location.replace("login.html");
-        return;
-      }
+            <button type="submit">Submit Rating</button>
+        </form>
+    </section>
 
-      // show username
-      const name = getCurrentUserBrowser ? getCurrentUserBrowser() : localStorage.getItem("pjav_logged_in_user");
-      document.getElementById('welcomeText').textContent = "Hello " + name;
+    <!-- Supabase + Rating JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="rating.js"></script>
 
-      setupInactivityTimers();
-    });
-
-    function logoutUser() {
-      // clear key used in auth.js
-      localStorage.removeItem("pjav_logged_in_user");
-      window.location.replace("login.html");
-    }
-
-    // Prevent cached dashboard from showing after logout via back button
-    window.addEventListener("pageshow", function (event) {
-      if (event.persisted) {
-        // if no session, redirect immediately
-        if (!localStorage.getItem("pjav_logged_in_user")) {
-          window.location.replace("login.html");
-        } else {
-          window.location.reload();
-        }
-      }
-    });
-
-    // ---- Optional: Auto-logout on inactivity (30 min) ----
-    function setupInactivityTimers() {
-      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000;
-      const WARNING_MS = 29 * 60 * 1000;
-
-      let inactivityTimer = null;
-      let warningTimer = null;
-      const toast = document.getElementById('toast');
-
-      function resetInactivityTimers() {
-        if (inactivityTimer) clearTimeout(inactivityTimer);
-        if (warningTimer) clearTimeout(warningTimer);
-        toast.classList.remove('show');
-
-        warningTimer = setTimeout(() => {
-          toast.classList.add('show');
-        }, WARNING_MS);
-
-        inactivityTimer = setTimeout(() => {
-          logoutUser();
-        }, INACTIVITY_LIMIT_MS);
-      }
-
-      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
-        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
-
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) resetInactivityTimers();
-      });
-
-      toast.addEventListener('click', resetInactivityTimers);
-
-      resetInactivityTimers();
-    }
-  </script>
 </body>
 </html>
