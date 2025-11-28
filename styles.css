@@ -9,356 +9,112 @@
 }
 
 body {
-    background-color: #f5f9fc;
-    color: #222;
+    background-color: #e3f2fd;
 }
 
-a {
-    text-decoration: none;
-}
-
-/* Top bar / hero for landing */
-.hero-wrapper {
-    position: relative;
-    height: 280px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.hero-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7);
-}
-
-.hero-text {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-}
-
-.hero-text h1 {
-    font-size: 3rem;
-    letter-spacing: 2px;
-}
-
-.hero-text h2 {
-    margin-top: 10px;
-    font-size: 2rem;
-}
-
-/* Center content sections */
-.page-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 16px 60px 16px;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 4px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s;
-    font-size: 0.95rem;
-}
-
-.btn-primary {
-    background-color: #0077aa;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #005f87;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.btn-dashboard {
-    background-color: #16a34a;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
-
-.btn-dashboard:hover {
-    background-color: #15803d;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* Simple pill status at top of dashboard */
-.status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background-color: #dcfce7;
-    color: #166534;
-    font-size: 0.85rem;
-}
-
-/* Landing image area */
-.hero-image-wrapper {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-image-wrapper img {
-    max-width: 100%;
-    border-radius: 4px;
-}
-
-/* Footer credit */
-.footer-credit {
-    margin-top: 40px;
-    font-size: 0.8rem;
-    text-align: right;
-    color: #777;
-}
-
-/* Login card */
-.auth-wrapper {
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(180deg, #022c43, #0b7285);
-}
-
-.auth-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 32px 28px 28px 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.20);
-    width: 100%;
-    max-width: 420px;
-}
-
-.auth-card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.auth-card p {
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center;
-    margin-bottom: 24px;
-}
-
-.form-group {
-    margin-bottom: 16px;
-}
-
-.form-group label {
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 4px;
-    border: 1px solid #d1d5db;
-    font-size: 0.9rem;
-}
-
-.error-msg {
-    color: #b91c1c;
-    font-size: 0.8rem;
-    min-height: 18px;
-    margin-top: 4px;
-}
-
-/* Dashboard top header */
+/* Header */
 .dash-header {
     background-color: #e0f2fe;
     padding: 10px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
 }
 
-.dash-header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.status-pill {
+    background: #d1fadf;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #166534;
+    font-size: 0.9rem;
 }
 
 .logo-strip img {
     height: 40px;
-    object-fit: contain;
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
-.dash-header-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.dash-header-right span {
-    font-size: 0.9rem;
-}
-
-/* Dashboard title area */
-.dash-title-block {
-    text-align: center;
-    padding: 24px 16px 8px 16px;
-}
-
-.dash-title-block h1 {
-    font-size: 1.4rem;
-    margin-bottom: 6px;
-}
-
-.dash-title-block p {
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* Dashboard buttons row */
-.dash-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 20px;
-}
-
-/* Project highlight */
-.project-section {
-    margin-top: 32px;
-    text-align: center;
-}
-
-.project-section h2 {
-    font-size: 1.2rem;
-    margin-bottom: 16px;
-}
-
-.project-section img {
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-/* 📦 Rating Card on Dashboard */
-#rating-section {
-    max-width: 420px;
-    margin: 40px auto 60px auto;
-    background: #ffffff;
-    padding: 24px 22px 22px 22px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.16);
-    font-size: 0.9rem;
-}
-
-#rating-section h3 {
-    text-align: center;
-    margin-bottom: 18px;
-    font-size: 1.1rem;
-}
-
-#rating-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-#rating-section label {
-    font-size: 0.85rem;
-    margin-top: 6px;
-}
-
-#rating-section input,
-#rating-section textarea {
-    width: 100%;
-    padding: 9px 10px;
-    margin-top: 4px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
-    font-size: 0.9rem;
-}
-
-#rating-section textarea {
-    min-height: 70px;
-    resize: vertical;
-}
-
-/* Stars row */
-.stars {
-    font-size: 26px;
+.btn {
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: none;
     cursor: pointer;
-    margin: 6px 0 10px 0;
 }
 
-.star {
-    color: #cbd5f5;      /* light */
-    cursor: pointer;
-    transition: color 0.2s;
-    padding-right: 3px;
-}
-
-.star.selected {
-    color: #facc15;      /* gold-500 */
-}
-
-/* Rating submit button (inside card) */
-#rating-section button {
-    margin-top: 10px;
-    width: 100%;
-    padding: 11px;
+.btn-primary {
     background: #0077aa;
     color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 600;
 }
 
-#rating-section button:hover {
+.btn-primary:hover {
     background: #005f87;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 2.2rem;
-    }
+/* ⭐ Rating panel top-right */
+.rating-top-wrapper {
+    max-width: 360px;
+    margin: 15px 20px 0 auto;
+}
 
-    .hero-text h2 {
-        font-size: 1.4rem;
-    }
+#rating-section {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
 
-    .dash-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+#rating-section h3 {
+    margin-bottom: 10px;
+}
 
-    .dash-header-right {
-        align-self: stretch;
-        justify-content: space-between;
-    }
+/* Name input */
+#rating-section input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
 
-    #rating-section {
-        margin: 24px 12px 40px 12px;
-    }
+/* Stars */
+.stars {
+    display: flex;
+    gap: 10px;
+    margin: 8px 0 12px 0;
+}
+
+.star {
+    font-size: 28px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.star.selected {
+    color: #ffcc00;
+}
+
+/* Submit button */
+#rating-section button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Content */
+.page-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.project-section img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.footer-credit {
+    text-align: right;
+    padding: 20px;
+    font-size: 0.85rem;
+    opacity: 0.7;
 }
