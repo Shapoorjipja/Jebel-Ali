@@ -2,32 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>PJAV – Login</title>
+  <title>PJAV Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="auth.js" defer></script>
+
   <style>
-    :root { 
-      --panel:#ffffff; 
-      --accent:#00796B; 
-      --accentDark:#004D40; 
+    :root {
+      --panel:#ffffff;
+      --accent:#00796B;
+      --accentDark:#004D40;
       --danger:#d9534f;
     }
+
     html, body {
       height: 100%;
       margin: 0;
       font-family: 'Poppins', sans-serif;
       color: #1b1b1b;
-      /* ✅ Background image */
       background: url("https://www.nakheel.com/images/nakheelcorporatelibraries/construction-updates/pja-1920x1080-01.png?sfvrsn=70661267_1")
-                  no-repeat center center fixed;
+        no-repeat center center fixed;
       background-size: cover;
     }
 
     .overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(227,242,253,0.6); /* translucent overlay */
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(227,242,253,0.6);
     }
 
     .page {
@@ -41,38 +41,45 @@
 
     .card {
       width: 100%;
-      max-width: 520px;
+      max-width: 420px;
       background: var(--panel);
       border-radius: 14px;
       box-shadow: 0 12px 28px rgba(0,0,0,.20);
       padding: 28px 26px;
     }
 
-    h2 { margin: 0 0 6px }
-    .muted { color:#566; margin:0 0 18px; font-size:0.9rem; }
-    label { display:block; margin:12px 0 6px; font-size:0.9rem; }
+    h2 { margin: 0 0 6px; }
+    .muted { color:#566; margin:0 0 18px; }
+
+    label { display:block; margin:12px 0 6px; }
+
     input {
-      width:100%; padding:12px 12px; border-radius:10px;
-      border:1px solid #c9d4e0; outline:none; background:#fff;
-      font-size:0.9rem;
+      width:100%;
+      padding:12px 12px;
+      border-radius:10px;
+      border:1px solid #c9d4e0;
+      outline:none;
+      background:#fff;
+      font-size:14px;
     }
+
     button {
-      width:100%; margin-top:16px; padding:12px 14px;
-      background: var(--accent); color:#fff; border:0; border-radius:10px;
-      font-weight:600; cursor:pointer; font-size:0.95rem;
+      width:100%;
+      margin-top:16px;
+      padding:12px 14px;
+      background: var(--accent);
+      color:#fff;
+      border:0;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      font-size:14px;
     }
     button:hover { background: var(--accentDark); }
 
-    .msg { min-height:18px; margin-top:10px; font-weight:600; font-size:0.85rem; }
+    .msg { min-height:18px; margin-top:10px; font-weight:600; font-size:13px; }
     .err { color: var(--danger); }
     .ok  { color:#2e7d32; }
-
-    .back-link {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 0.8rem;
-    }
-    .back-link a { color:#004D40; text-decoration:none; }
   </style>
 </head>
 <body>
@@ -85,32 +92,64 @@
 
       <form onsubmit="handleLogin(event)">
         <label for="username">Username</label>
-        <input id="username" name="username" type="text" autocomplete="off" />
+        <input id="username" type="text" autocomplete="off" />
 
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
+        <input id="password" type="password" />
 
         <button type="submit">Login</button>
+        <div id="msg" class="msg"></div>
       </form>
-
-      <div id="msg" class="msg"></div>
-
-      <div class="back-link">
-        <a href="index.html">← Back to landing page</a>
-      </div>
     </div>
   </div>
 
+  <!-- Auth logic -->
+  <script src="auth.js"></script>
   <script>
-    // Press Enter inside password field triggers login
-    document.addEventListener("DOMContentLoaded", () => {
-      const pass = document.getElementById("password");
-      pass.addEventListener("keydown", e => {
-        if (e.key === "Enter") {
-          const form = e.target.form;
-          if (form) form.dispatchEvent(new Event("submit", {cancelable:true, bubbles:true}));
-        }
-      });
+    // If already logged in → go straight to dashboard
+    if (localStorage.getItem("pjav_logged_in_user")) {
+      window.location.replace("dashboard.html");
+    }
+
+    // Let Enter on password field submit the form
+    document.getElementById('password').addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        document.querySelector('form').dispatchEvent(new Event('submit', {cancelable: true}));
+      }
+    });
+
+    // Wire up handleLogin to show user messages (auth.js does the check)
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      const msg = document.getElementById('msg');
+
+      if (!u || !p) {
+        msg.textContent = 'Please enter username and password.';
+        msg.className = 'msg err';
+        return;
+      }
+
+      msg.textContent = 'Checking...';
+      msg.className = 'msg ok';
+
+      // checkLoginBrowser is defined in auth.js
+      if (checkLoginBrowser(u, p)) {
+        localStorage.setItem("pjav_logged_in_user", u);
+        window.location.replace("dashboard.html");
+      } else {
+        msg.textContent = '✖ Invalid username or password.';
+        msg.className = 'msg err';
+      }
+    }
+
+    // Prevent cached back navigation to a stale login page
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
     });
   </script>
 </body>
