@@ -87,28 +87,15 @@
     }
     .logout-btn:hover { background: var(--dangerHover); }
 
-    .hello {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* Wrapper below header */
-    .page-wrapper {
-      max-width: 1100px;
-      margin: 120px auto 0;
-      padding: 0 16px 60px;
-    }
+    .hello { font-size: 14px; font-weight: 600; }
 
     main {
-      text-align: center;
-      margin-top: 20px;
+      padding: 140px 16px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .subtext {
-      margin: 0 auto 6px;
-      max-width: 980px;
-      line-height: 1.6;
-    }
+    .subtext { line-height: 1.6; max-width: 800px; }
 
     .welcome-text {
       font-weight: 700;
@@ -116,88 +103,8 @@
       margin-bottom: 10px;
     }
 
-    /* Row: welcome text + rating card */
-    .intro-rating-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .intro-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .intro-text .subtext {
-      margin-left: 0;
-    }
-
-    /* Rating card */
-    #rating-section {
-      flex: 0 0 320px;
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 14px 16px 16px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-
-    #rating-section h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
-    }
-
-    #rating-section label {
-      display: block;
-      font-size: 13px;
-      margin-top: 6px;
-      margin-bottom: 2px;
-    }
-
-    #rating-section input[type="text"] {
-      width: 100%;
-      padding: 7px 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 13px;
-    }
-
-    .stars {
-      display: flex;
-      gap: 6px;
-      margin: 6px 0 10px;
-    }
-
-    .star {
-      font-size: 22px;
-      cursor: pointer;
-      color: #ccc;
-    }
-
-    .star.selected {
-      color: #ffcc00;
-    }
-
-    #rating-section button {
-      width: 100%;
-      margin-top: 6px;
-      padding: 8px 0;
-      border-radius: 6px;
-      border: none;
-      background: var(--btn);
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    #rating-section button:hover {
-      background: var(--btnHover);
-    }
-
     .links {
-      margin-top: 10px;
-      text-align: left;
+      margin-top: 28px;
     }
 
     .links a {
@@ -214,13 +121,10 @@
     }
     .links a:hover { background-color: var(--btnHover); }
 
+    /* Project Section */
     .project-images {
       margin-top: 26px;
       text-align: center;
-    }
-    .project-images h3 {
-      margin: 18px 0 8px;
-      font-weight: 600;
     }
     .project-images img.project-img{
       max-width: 980px;
@@ -232,6 +136,73 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
+    /* ===================================
+       ⭐ RATING BOX RIGHT SIDE FIX
+    =================================== */
+    .intro-rating-row {
+      position: relative;
+      min-height: 260px;
+      margin-bottom: 20px;
+    }
+
+    #rating-section {
+      position: absolute;
+      top: 0;
+      right: 0;      /* PUSH TO EXTREME RIGHT */
+      width: 330px;
+      padding: 18px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+    }
+
+    #rating-section h3 {
+      margin-top: 0;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    #rating-section input,
+    #rating-section textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: Poppins;
+    }
+
+    .stars {
+      margin-bottom: 12px;
+    }
+
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .star.selected {
+      color: #ff9800;
+    }
+
+    #rating-section button {
+      width: 100%;
+      background-color: #00796B;
+      border: none;
+      padding: 10px 14px;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #rating-section button:hover {
+      background-color: #004D40;
+    }
+
+    /* Footer */
     .footer {
       position: fixed;
       bottom: 10px;
@@ -240,50 +211,25 @@
       font-style: italic;
       color: #555;
     }
-
-    .toast {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      background: #263238;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      opacity: 0;
-      transition: opacity .2s;
-      pointer-events: none;
-    }
-    .toast.show { opacity: .95; }
-
-    /* Responsive: stack intro + rating vertically on small screens */
-    @media (max-width: 768px) {
-      .intro-rating-row {
-        flex-direction: column;
-      }
-      #rating-section {
-        width: 100%;
-        max-width: 100%;
-      }
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- Top bar -->
+  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="login-text">✅ Login Successful</div>
       <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="Logo1">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="Logo2">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="Logo3">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="Logo4">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s">
+        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s">
       </div>
     </div>
 
     <div class="topbar-center">
-      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png" alt="Palm Jebel Ali">
+      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png">
     </div>
 
     <div class="topbar-right">
@@ -292,145 +238,88 @@
     </div>
   </div>
 
-  <!-- Content wrapper (below fixed header) -->
-  <div class="page-wrapper">
+  <!-- MAIN CONTENT -->
+  <main>
 
-    <main>
+    <!-- Rating card positioned at extreme right -->
+    <div class="intro-rating-row">
+      <div>
+        <p class="welcome-text">
+          Welcome to Shapoorji Pallonji Palm Jebel Ali–Villas Frond M & N Overall Progress Dashboard!
+        </p>
 
-      <!-- ROW: welcome text + rating card -->
-      <div class="intro-rating-row">
-        <div class="intro-text">
-          <p class="subtext welcome-text">
-            Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
-          </p>
-          <p class="subtext">
-            Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
-            to load during the initial access.
-          </p>
-        </div>
+        <p class="subtext">
+          Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
+          to load during the initial access.
+        </p>
+      </div>
 
-        <!-- ⭐ Rating card (now next to the text) -->
-        <section id="rating-section">
-          <h3>⭐ Rate This Page</h3>
+      <!-- ⭐ RATING BOX -->
+      <section id="rating-section">
+        <h3>⭐ Rate This Page</h3>
 
-          <form id="rating-form" onsubmit="submitRating(event);">
-            <label for="name">Name:</label>
+        <form onsubmit="submitRating(); return false;">
+            <label>Name:</label>
             <input type="text" id="name" required>
 
             <label>Rating:</label>
             <div class="stars">
-              <span class="star" data-value="1">★</span>
-              <span class="star" data-value="2">★</span>
-              <span class="star" data-value="3">★</span>
-              <span class="star" data-value="4">★</span>
-              <span class="star" data-value="5">★</span>
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
             </div>
+            <input type="hidden" id="rating" required>
 
-            <input type="hidden" id="rating" required />
+            <label>Comment (optional):</label>
+            <textarea id="comment"></textarea>
 
             <button type="submit">Submit Rating</button>
-          </form>
-        </section>
-      </div>
+        </form>
+      </section>
+    </div>
 
-      <!-- Power BI links -->
-      <div class="links">
-        <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-          📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
-        </a>
+    <!-- Power BI links -->
+    <div class="links">
+      <a href="#" target="_blank">📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N</a>
+      <a href="#" target="_blank">📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M</a>
+    </div>
 
-        <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-          📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
-        </a>
-      </div>
+    <!-- Project Images -->
+    <div class="project-images">
+      <h3>📸 Project Highlights</h3>
+      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" class="project-img">
+      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" class="project-img">
+    </div>
 
-      <div class="project-images">
-        <h3>📸 Project Highlights</h3>
-        <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" alt="Project 1" class="project-img">
-        <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" alt="Project 2" class="project-img">
-      </div>
-    </main>
-
-  </div> <!-- /.page-wrapper -->
+  </main>
 
   <div class="footer">by Sohail</div>
-  <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
 
-  <!-- Auth + session protection -->
-  <script src="auth.js"></script>
-  <script>
-    // On load: if not logged in, kick back to login
-    document.addEventListener("DOMContentLoaded", () => {
-      if (!localStorage.getItem("pjav_logged_in_user")) {
-        window.location.replace("login.html");
-        return;
-      }
-
-      // show username
-      const name = (typeof getCurrentUserBrowser === "function")
-        ? getCurrentUserBrowser()
-        : localStorage.getItem("pjav_logged_in_user");
-
-      document.getElementById('welcomeText').textContent = "Hello " + name;
-
-      setupInactivityTimers();
-    });
-
-    function logoutUser() {
-      localStorage.removeItem("pjav_logged_in_user");
-      window.location.replace("login.html");
-    }
-
-    // Prevent cached dashboard from showing after logout via back button
-    window.addEventListener("pageshow", function (event) {
-      if (event.persisted) {
-        if (!localStorage.getItem("pjav_logged_in_user")) {
-          window.location.replace("login.html");
-        } else {
-          window.location.reload();
-        }
-      }
-    });
-
-    // ---- Auto-logout on inactivity (30 min) ----
-    function setupInactivityTimers() {
-      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000;
-      const WARNING_MS = 29 * 60 * 1000;
-
-      let inactivityTimer = null;
-      let warningTimer = null;
-      const toast = document.getElementById('toast');
-
-      function resetInactivityTimers() {
-        if (inactivityTimer) clearTimeout(inactivityTimer);
-        if (warningTimer) clearTimeout(warningTimer);
-        toast.classList.remove('show');
-
-        warningTimer = setTimeout(() => {
-          toast.classList.add('show');
-        }, WARNING_MS);
-
-        inactivityTimer = setTimeout(() => {
-          logoutUser();
-        }, INACTIVITY_LIMIT_MS);
-      }
-
-      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
-        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
-
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) resetInactivityTimers();
-      });
-
-      toast.addEventListener('click', resetInactivityTimers);
-
-      resetInactivityTimers();
-    }
-  </script>
-
-  <!-- Supabase Library + Rating Logic -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="rating.js"></script>
+
+  <!-- Star Selection Logic -->
+  <script>
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("rating");
+
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            const value = star.getAttribute("data-value");
+            ratingInput.value = value;
+
+            stars.forEach(s => {
+                s.classList.remove("selected");
+                if (s.getAttribute("data-value") <= value) {
+                    s.classList.add("selected");
+                }
+            });
+        });
+    });
+  </script>
 
 </body>
 </html>
