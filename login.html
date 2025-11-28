@@ -1,41 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PJAV – Secure Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="auth.js" defer></script>
+  <meta charset="utf-8" />
+  <title>PJAV – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="auth.js" defer></script>
+  <style>
+    :root { 
+      --panel:#ffffff; 
+      --accent:#00796B; 
+      --accentDark:#004D40; 
+      --danger:#d9534f;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #1b1b1b;
+      /* ✅ Background image */
+      background: url("https://www.nakheel.com/images/nakheelcorporatelibraries/construction-updates/pja-1920x1080-01.png?sfvrsn=70661267_1")
+                  no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(227,242,253,0.6); /* translucent overlay */
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--panel);
+      border-radius: 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.20);
+      padding: 28px 26px;
+    }
+
+    h2 { margin: 0 0 6px }
+    .muted { color:#566; margin:0 0 18px; font-size:0.9rem; }
+    label { display:block; margin:12px 0 6px; font-size:0.9rem; }
+    input {
+      width:100%; padding:12px 12px; border-radius:10px;
+      border:1px solid #c9d4e0; outline:none; background:#fff;
+      font-size:0.9rem;
+    }
+    button {
+      width:100%; margin-top:16px; padding:12px 14px;
+      background: var(--accent); color:#fff; border:0; border-radius:10px;
+      font-weight:600; cursor:pointer; font-size:0.95rem;
+    }
+    button:hover { background: var(--accentDark); }
+
+    .msg { min-height:18px; margin-top:10px; font-weight:600; font-size:0.85rem; }
+    .err { color: var(--danger); }
+    .ok  { color:#2e7d32; }
+
+    .back-link {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .back-link a { color:#004D40; text-decoration:none; }
+  </style>
 </head>
 <body>
+  <div class="overlay"></div>
 
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <h1>Shapoorji Pallonji Login</h1>
-        <p>Please enter your credentials to access the Palm Jebel Ali – Villas Frond M &amp; N dashboard.</p>
+  <div class="page">
+    <div class="card">
+      <h2>Login</h2>
+      <p class="muted">Enter your username and password.</p>
 
-        <form onsubmit="handleLogin(event)">
-            <div class="form-group">
-                <label for="username">User name</label>
-                <input id="username" name="username" type="text" required autocomplete="username">
-            </div>
+      <form onsubmit="handleLogin(event)">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="off" />
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" required autocomplete="current-password">
-            </div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
 
-            <div id="error" class="error-msg"></div>
+        <button type="submit">Login</button>
+      </form>
 
-            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;">
-                Login
-            </button>
-        </form>
+      <div id="msg" class="msg"></div>
 
-        <div style="margin-top:16px; text-align:center;">
-            <a href="index.html" style="font-size:0.8rem;">← Back to project landing page</a>
-        </div>
+      <div class="back-link">
+        <a href="index.html">← Back to landing page</a>
+      </div>
     </div>
-</div>
+  </div>
 
+  <script>
+    // Press Enter inside password field triggers login
+    document.addEventListener("DOMContentLoaded", () => {
+      const pass = document.getElementById("password");
+      pass.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          const form = e.target.form;
+          if (form) form.dispatchEvent(new Event("submit", {cancelable:true, bubbles:true}));
+        }
+      });
+    });
+  </script>
 </body>
 </html>
