@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Load browser-based authentication -->
-  <script src="auth.js" defer></script>
-
   <style>
     :root{
       --bg: #e3f2fd;
@@ -41,170 +38,263 @@
       border-bottom: 1px solid rgba(0,0,0,0.06);
       z-index: 1000;
     }
-    .topbar-left { display: flex; flex-direction: column; gap: 6px; }
-    .login-text { font-weight: 600; color: var(--green); }
-    .image-row { display: flex; gap: 6px; }
-    .image-row img { height: 40px; border-radius: 4px; }
 
-    .topbar-center img { height: 40px; }
+    .topbar-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .login-text {
+      font-weight: 600;
+      color: var(--green);
+      font-size: 16px;
+    }
+
+    .image-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .image-row img {
+      height: 40px;
+      width: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .topbar-center img {
+      height: 40px;
+      object-fit: contain;
+    }
 
     .topbar-right {
-      display: flex; flex-direction: column;
-      align-items: flex-end; gap: 6px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
     }
+
     .logout-btn {
       background: var(--danger);
-      border: none; color: #fff;
+      border: none;
+      color: #fff;
       padding: 8px 14px;
       border-radius: 6px;
-      cursor: pointer; font-weight: 600;
+      cursor: pointer;
+      font-weight: 600;
     }
     .logout-btn:hover { background: var(--dangerHover); }
 
-    .hello { font-weight: 600; }
+    .hello {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
     main {
       padding: 120px 16px 60px;
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1100px;
+      margin: 0 auto;
       text-align: center;
     }
 
-    .welcome-text { font-weight: 700; font-size: 20px; }
+    .subtext {
+      margin: 0 auto 6px;
+      max-width: 980px;
+      line-height: 1.6;
+    }
+
+    .welcome-text {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .links {
+      margin-top: 28px;
+      text-align: left;
+    }
 
     .links a {
       display: inline-block;
       margin: 10px 10px 10px 0;
       padding: 12px 20px;
-      background: var(--btn);
-      color: white; text-decoration: none;
-      border-radius: 6px; font-weight: 600;
+      background-color: var(--btn);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.25s ease;
+      white-space: nowrap;
     }
-    .links a:hover { background: var(--btnHover); }
+    .links a:hover { background-color: var(--btnHover); }
 
-    .project-images img {
-      max-width: 980px; width: 100%;
-      margin-top: 16px;
-      border-radius: 10px;
+    .project-images {
+      margin-top: 26px;
+      text-align: center;
+    }
+    .project-images h3 {
+      margin: 18px 0 8px;
+      font-weight: 600;
+    }
+    .project-images img.project-img{
+      max-width: 980px;
+      width: 100%;
+      height: auto;
+      display:block;
+      margin:16px auto;
+      border-radius:10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     .footer {
-      position: fixed; bottom: 10px; right: 20px;
-      font-size: 14px; font-style: italic;
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 14px;
+      font-style: italic;
       color: #555;
     }
 
     .toast {
-      position: fixed; right: 16px; bottom: 16px;
-      background: #263238; color: #fff;
-      padding: 10px 14px; border-radius: 8px;
-      font-size: 13px; opacity: 0;
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: #263238;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      opacity: 0;
       transition: opacity .2s;
       pointer-events: none;
     }
-    .toast.show { opacity: 1; }
+    .toast.show { opacity: .95; }
   </style>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      requireAuth();
-
-      // show username
-      document.getElementById("welcomeText").textContent =
-        "Hello " + getCurrentUserBrowser();
-
-      setupInactivityTimers();
-    });
-
-    function doLogout() {
-      logout();
-    }
-
-    // ========================================
-    // AUTO LOGOUT SYSTEM
-    // ========================================
-    function setupInactivityTimers() {
-      const LIMIT = 30 * 60 * 1000;
-      const WARN  = 29 * 60 * 1000;
-
-      let inactivity = null;
-      let warning = null;
-      const toast = document.getElementById("toast");
-
-      function resetTimers() {
-        clearTimeout(inactivity);
-        clearTimeout(warning);
-
-        toast.classList.remove("show");
-
-        warning = setTimeout(() => toast.classList.add("show"), WARN);
-        inactivity = setTimeout(() => logout(), LIMIT);
-      }
-
-      ["mousemove","mousedown","keydown","wheel","touchstart","scroll","focus"]
-      .forEach(ev => window.addEventListener(ev, resetTimers));
-
-      document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) resetTimers();
-      });
-
-      toast.addEventListener("click", resetTimers);
-
-      resetTimers();
-    }
-  </script>
 </head>
-
 <body>
 
-  <!-- TOP BAR -->
+  <!-- Top bar -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="login-text">✅ Login Successful</div>
       <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="Logo1">
+        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="Logo2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="Logo3">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="Logo4">
       </div>
     </div>
 
     <div class="topbar-center">
-      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png">
+      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png" alt="Palm Jebel Ali">
     </div>
 
     <div class="topbar-right">
-      <button class="logout-btn" onclick="doLogout()">Logout</button>
+      <button class="logout-btn" onclick="logoutUser()">Logout</button>
       <div id="welcomeText" class="hello">Hello</div>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
   <main>
-    <p class="welcome-text">
-      Welcome to Shapoorji Pallonji Palm Jebel Ali – Villas Frond M & N Overall Progress Dashboard!
+    <p class="subtext welcome-text">
+      Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
     </p>
-
-    <p>Please select the dashboard of your choice.</p>
+    <p class="subtext">
+      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
+      to load during the initial access.
+    </p>
 
     <div class="links">
       <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📈 PROGRESS DASHBOARD – FROND N
+        📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
       </a>
 
       <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📉 PROGRESS DASHBOARD – FROND M
+        📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
       </a>
     </div>
 
     <div class="project-images">
       <h3>📸 Project Highlights</h3>
-      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg">
-      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg">
+      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" alt="Project 1" class="project-img">
+      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" alt="Project 2" class="project-img">
     </div>
   </main>
 
   <div class="footer">by Sohail</div>
-  <div id="toast" class="toast">Inactive for 10 minutes. You will be logged out in 1 minute…</div>
+  <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
 
+  <!-- Auth + session protection -->
+  <script src="auth.js"></script>
+  <script>
+    // On load: if not logged in, kick back to login
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!localStorage.getItem("pjav_logged_in_user")) {
+        window.location.replace("login.html");
+        return;
+      }
+
+      // show username
+      const name = getCurrentUserBrowser ? getCurrentUserBrowser() : localStorage.getItem("pjav_logged_in_user");
+      document.getElementById('welcomeText').textContent = "Hello " + name;
+
+      setupInactivityTimers();
+    });
+
+    function logoutUser() {
+      // clear key used in auth.js
+      localStorage.removeItem("pjav_logged_in_user");
+      window.location.replace("login.html");
+    }
+
+    // Prevent cached dashboard from showing after logout via back button
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted) {
+        // if no session, redirect immediately
+        if (!localStorage.getItem("pjav_logged_in_user")) {
+          window.location.replace("login.html");
+        } else {
+          window.location.reload();
+        }
+      }
+    });
+
+    // ---- Optional: Auto-logout on inactivity (30 min) ----
+    function setupInactivityTimers() {
+      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000;
+      const WARNING_MS = 29 * 60 * 1000;
+
+      let inactivityTimer = null;
+      let warningTimer = null;
+      const toast = document.getElementById('toast');
+
+      function resetInactivityTimers() {
+        if (inactivityTimer) clearTimeout(inactivityTimer);
+        if (warningTimer) clearTimeout(warningTimer);
+        toast.classList.remove('show');
+
+        warningTimer = setTimeout(() => {
+          toast.classList.add('show');
+        }, WARNING_MS);
+
+        inactivityTimer = setTimeout(() => {
+          logoutUser();
+        }, INACTIVITY_LIMIT_MS);
+      }
+
+      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
+        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
+
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) resetInactivityTimers();
+      });
+
+      toast.addEventListener('click', resetInactivityTimers);
+
+      resetInactivityTimers();
+    }
+  </script>
 </body>
 </html>
