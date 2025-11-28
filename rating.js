@@ -1,30 +1,22 @@
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+const SUPABASE_URL = "https://uroncgduuurzkkaatnevf.supabase.co";  // your project URL
+const SUPABASE_KEY = "sb_publishable_0ANL7iukH9a9WfWAZByFQ0_2DxJH51K";  // your publishable key
 
-<script>
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const SUPABASE_URL = "https://uroncgduurzkkzaatnevf.supabase.co";   // your project URL
-    const SUPABASE_KEY = "sb_publisable_0ANL7iukH9a9WfWAZByF0Q_20xJH51K";  // your publishable key
+async function submitRating() {
+    const name = document.getElementById("name").value;
+    const rating = document.getElementById("rating").value;
+    const page = window.location.pathname;
+    const comment = document.getElementById("comment").value;
 
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { data, error } = await supabase
+        .from("ratings")
+        .insert([{ name, rating, page, comment }]);
 
-    async function submitRating() {
-        const name = document.getElementById("name").value;
-        const rating = document.getElementById("rating").value;
-        const page = window.location.pathname;
-        const comment = document.getElementById("comment").value;
-
-        const { data, error } = await supabase
-            .from("ratings")
-            .insert([
-                { name, rating, page, comment }
-            ]);
-
-        if (error) {
-            console.error(error);
-            alert("Error saving rating!");
-        } else {
-            alert("Rating saved successfully!");
-        }
+    if (error) {
+        console.error(error);
+        alert("Error saving rating!");
+    } else {
+        alert("Rating saved successfully!");
     }
-
-</script>
+}
