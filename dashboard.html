@@ -25,9 +25,7 @@
       padding: 0;
     }
 
-    /* ───────────────────────────────────────────── */
-    /* TOP BAR */
-    /* ───────────────────────────────────────────── */
+    /* ────────────────── TOP BAR ────────────────── */
     .topbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -91,9 +89,7 @@
 
     .hello { font-size: 14px; font-weight: 600; }
 
-    /* ───────────────────────────────────────────── */
-    /* MAIN PAGE */
-    /* ───────────────────────────────────────────── */
+    /* ────────────────── MAIN CONTENT ────────────────── */
     main {
       padding: 120px 16px 60px;
       max-width: 1100px;
@@ -138,23 +134,20 @@
       font-size: 14px;
       font-style: italic;
       color: #555;
+      z-index: 900;
     }
 
-    /* ───────────────────────────────────────────── */
-    /* FLOATING RATING BOX */
-    /* ───────────────────────────────────────────── */
+    /* ────────────────── FLOATING RATING BOX ────────────────── */
     #rating-panel {
       position: fixed;
-      bottom: 70px;    /* stays above “by Sohail” */
-      right: 30px;     /* push to extreme right */
+      bottom: 70px;     /* sits above “by Sohail” */
+      right: 30px;      /* extreme right */
       width: 330px;
-
       background: #ffffff;
       padding: 18px;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-
-      z-index: 999999; /* always on top */
+      z-index: 999999;  /* above everything */
     }
 
     #rating-panel h3 {
@@ -170,6 +163,8 @@
       margin-bottom: 12px;
       border-radius: 6px;
       border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 14px;
     }
 
     .stars { margin-bottom: 12px; }
@@ -192,7 +187,7 @@
     }
     #rating-panel button:hover { background: var(--btnHover); }
 
-    /* Toast */
+    /* Toast (optional, for inactivity if you decide to use later) */
     .toast {
       position: fixed;
       right: 16px;
@@ -217,15 +212,15 @@
     <div class="topbar-left">
       <div class="login-text">✅ Login Successful</div>
       <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="">
+        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="">
       </div>
     </div>
 
     <div class="topbar-center">
-      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png">
+      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png" alt="Palm Jebel Ali">
     </div>
 
     <div class="topbar-right">
@@ -241,23 +236,25 @@
     </p>
 
     <p class="subtext">
-      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time to load.
+      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time to load during the initial access.
     </p>
 
     <div class="links">
-      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d" target="_blank">
+      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7"
+         target="_blank">
         📊 POWER BI FROND N
       </a>
 
-      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba" target="_blank">
+      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7"
+         target="_blank">
         📊 POWER BI FROND M
       </a>
     </div>
 
     <div class="project-images">
       <h3>📸 Project Highlights</h3>
-      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" class="project-img">
-      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" class="project-img">
+      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" alt="Project 1" class="project-img">
+      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" alt="Project 2" class="project-img">
     </div>
   </main>
 
@@ -287,12 +284,74 @@
     <button onclick="submitRating()">Submit Rating</button>
   </div>
 
-  <!-- SUPABASE + AUTH -->
+  <!-- LIBS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="auth.js"></script>
-  <script src="rating.js"></script>
+  <script src="auth.js"></script>   <!-- your existing auth helper -->
+  <script src="rating.js"></script> <!-- your Supabase insert code -->
 
-  <!-- STAR LOGIC -->
+  <!-- AUTH + LOGOUT + NAME DISPLAY -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let username = "";
+
+      // 1) If auth.js exposes getCurrentUserBrowser() use that
+      if (typeof getCurrentUserBrowser === "function") {
+        username = getCurrentUserBrowser() || "";
+      }
+
+      // 2) Fallback to common localStorage keys
+      if (!username) {
+        username =
+          localStorage.getItem("pjav_logged_in_user") ||
+          localStorage.getItem("username") ||
+          "";
+      }
+
+      // 3) If still nothing, force login
+      if (!username) {
+        window.location.replace("login.html");
+        return;
+      }
+
+      // 4) Show name in header
+      const welcomeEl = document.getElementById("welcomeText");
+      if (welcomeEl) {
+        welcomeEl.textContent = "Hello " + username;
+      }
+    });
+
+    function logoutUser() {
+      try {
+        // If auth.js exposes a logout helper, call it
+        if (typeof logoutCurrentUser === "function") {
+          logoutCurrentUser();
+        }
+      } catch (e) {
+        console.warn("Custom logout function error:", e);
+      }
+
+      // Clear any stored session info (safe for this small app)
+      try {
+        localStorage.clear();
+      } catch (e) {}
+
+      // Redirect back to login
+      window.location.href = "login.html";
+    }
+
+    // Prevent seeing dashboard again after logout using browser Back
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted) {
+        // Page was loaded from cache
+        if (!localStorage.getItem("pjav_logged_in_user") &&
+            typeof getCurrentUserBrowser !== "function") {
+          window.location.replace("login.html");
+        }
+      }
+    });
+  </script>
+
+  <!-- STAR HIGHLIGHT LOGIC -->
   <script>
     const stars = document.querySelectorAll(".star");
     const ratingInput = document.getElementById("rating");
