@@ -92,7 +92,7 @@
       font-weight: 600;
     }
 
-    /* Wrapper below the fixed header */
+    /* Wrapper below header */
     .page-wrapper {
       max-width: 1100px;
       margin: 120px auto 0;
@@ -116,8 +116,87 @@
       margin-bottom: 10px;
     }
 
+    /* Row: welcome text + rating card */
+    .intro-rating-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .intro-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .intro-text .subtext {
+      margin-left: 0;
+    }
+
+    /* Rating card */
+    #rating-section {
+      flex: 0 0 320px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 14px 16px 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    #rating-section h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    #rating-section label {
+      display: block;
+      font-size: 13px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    #rating-section input[type="text"] {
+      width: 100%;
+      padding: 7px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 13px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 6px;
+      margin: 6px 0 10px;
+    }
+
+    .star {
+      font-size: 22px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .star.selected {
+      color: #ffcc00;
+    }
+
+    #rating-section button {
+      width: 100%;
+      margin-top: 6px;
+      padding: 8px 0;
+      border-radius: 6px;
+      border: none;
+      background: var(--btn);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #rating-section button:hover {
+      background: var(--btnHover);
+    }
+
     .links {
-      margin-top: 28px;
+      margin-top: 10px;
       text-align: left;
     }
 
@@ -177,68 +256,15 @@
     }
     .toast.show { opacity: .95; }
 
-    /* ⭐ Rating panel under Logout, top-right */
-    .rating-top-wrapper {
-      max-width: 340px;
-      margin-left: auto;
-    }
-
-    #rating-section {
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 14px 16px 16px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-    }
-
-    #rating-section h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
-    }
-
-    #rating-section label {
-      display: block;
-      font-size: 13px;
-      margin-top: 6px;
-      margin-bottom: 2px;
-    }
-
-    #rating-section input[type="text"] {
-      width: 100%;
-      padding: 7px 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 13px;
-    }
-
-    .stars {
-      display: flex;
-      gap: 6px;
-      margin: 6px 0 10px;
-    }
-
-    .star {
-      font-size: 22px;
-      cursor: pointer;
-      color: #ccc;
-    }
-
-    .star.selected {
-      color: #ffcc00;
-    }
-
-    #rating-section button {
-      width: 100%;
-      margin-top: 6px;
-      padding: 8px 0;
-      border-radius: 6px;
-      border: none;
-      background: var(--btn);
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    #rating-section button:hover {
-      background: var(--btnHover);
+    /* Responsive: stack intro + rating vertically on small screens */
+    @media (max-width: 768px) {
+      .intro-rating-row {
+        flex-direction: column;
+      }
+      #rating-section {
+        width: 100%;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -269,42 +295,45 @@
   <!-- Content wrapper (below fixed header) -->
   <div class="page-wrapper">
 
-    <!-- ⭐ Rating box under Logout -->
-    <div class="rating-top-wrapper">
-      <section id="rating-section">
-        <h3>⭐ Rate This Page</h3>
-
-        <form id="rating-form" onsubmit="submitRating(event);">
-          <label for="name">Name:</label>
-          <input type="text" id="name" required>
-
-          <label>Rating:</label>
-          <div class="stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-
-          <input type="hidden" id="rating" required />
-
-          <button type="submit">Submit Rating</button>
-        </form>
-      </section>
-    </div>
-
-    <!-- MAIN DASHBOARD CONTENT -->
     <main>
-      <p class="subtext welcome-text">
-        Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
-      </p>
-      <p class="subtext">
-        Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
-        to load during the initial access.
-      </p>
 
-      <!-- Power BI link -->
+      <!-- ROW: welcome text + rating card -->
+      <div class="intro-rating-row">
+        <div class="intro-text">
+          <p class="subtext welcome-text">
+            Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
+          </p>
+          <p class="subtext">
+            Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
+            to load during the initial access.
+          </p>
+        </div>
+
+        <!-- ⭐ Rating card (now next to the text) -->
+        <section id="rating-section">
+          <h3>⭐ Rate This Page</h3>
+
+          <form id="rating-form" onsubmit="submitRating(event);">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label>Rating:</label>
+            <div class="stars">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+
+            <input type="hidden" id="rating" required />
+
+            <button type="submit">Submit Rating</button>
+          </form>
+        </section>
+      </div>
+
+      <!-- Power BI links -->
       <div class="links">
         <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
           📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
