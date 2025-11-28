@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- ✅ our browser auth helper -->
+  <!-- Load browser-based authentication -->
   <script src="auth.js" defer></script>
 
   <style>
@@ -28,13 +28,11 @@
       padding: 0;
     }
 
-    /* Fixed top bar */
+    /* Top bar */
     .topbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      min-height: 100px; /* taller bar to hold text + images */
+      top: 0; left: 0; right: 0;
+      min-height: 100px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -43,208 +41,135 @@
       border-bottom: 1px solid rgba(0,0,0,0.06);
       z-index: 1000;
     }
+    .topbar-left { display: flex; flex-direction: column; gap: 6px; }
+    .login-text { font-weight: 600; color: var(--green); }
+    .image-row { display: flex; gap: 6px; }
+    .image-row img { height: 40px; border-radius: 4px; }
 
-    .topbar-left {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .login-text {
-      font-weight: 600;
-      color: var(--green);
-      font-size: 16px;
-    }
-    .image-row {
-      display: flex;
-      gap: 6px;
-    }
-    .image-row img {
-      height: 40px;
-      width: auto;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .topbar-center img {
-      height: 40px;
-      object-fit: contain;
-    }
+    .topbar-center img { height: 40px; }
 
     .topbar-right {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 6px;
     }
     .logout-btn {
       background: var(--danger);
-      border: none;
-      color: #fff;
+      border: none; color: #fff;
       padding: 8px 14px;
       border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
+      cursor: pointer; font-weight: 600;
     }
     .logout-btn:hover { background: var(--dangerHover); }
-    .hello {
-      font-size: 14px;
-      font-weight: 600;
-    }
+
+    .hello { font-weight: 600; }
 
     main {
-      padding: 120px 16px 60px; /* push down more because taller topbar */
-      max-width: 1100px;
-      margin: 0 auto;
+      padding: 120px 16px 60px;
+      max-width: 1100px; margin: 0 auto;
       text-align: center;
     }
 
-    .subtext {
-      margin: 0 auto 6px;
-      max-width: 980px;
-      line-height: 1.6;
-    }
+    .welcome-text { font-weight: 700; font-size: 20px; }
 
-    /* Welcome sentence styling */
-    .welcome-text {
-      font-weight: 700;      /* bold */
-      font-size: 20px;       /* bigger than normal */
-      margin-bottom: 10px;
-    }
-
-    .links { margin-top: 28px; text-align: left; }
     .links a {
       display: inline-block;
       margin: 10px 10px 10px 0;
       padding: 12px 20px;
-      background-color: var(--btn);
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background-color 0.25s ease;
-      white-space: nowrap;
+      background: var(--btn);
+      color: white; text-decoration: none;
+      border-radius: 6px; font-weight: 600;
     }
-    .links a:hover { background-color: var(--btnHover); }
+    .links a:hover { background: var(--btnHover); }
 
-    .project-images { margin-top: 26px; text-align: center; }
-    .project-images h3 { margin: 18px 0 8px; font-weight: 600; }
-    .project-images img.project-img{
-      max-width: 980px;
-      width: 100%;
-      height: auto;
-      display:block;
-      margin:16px auto;
-      border-radius:10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    .project-images img {
+      max-width: 980px; width: 100%;
+      margin-top: 16px;
+      border-radius: 10px;
     }
 
     .footer {
-      position: fixed;
-      bottom: 10px;
-      right: 20px;
-      font-size: 14px;
-      font-style: italic;
+      position: fixed; bottom: 10px; right: 20px;
+      font-size: 14px; font-style: italic;
       color: #555;
     }
 
     .toast {
-      position: fixed; 
-      right: 16px; 
-      bottom: 16px;
-      background: #263238; 
-      color: #fff; 
-      padding: 10px 14px;
-      border-radius: 8px; 
-      font-size: 13px; 
-      opacity: 0; 
+      position: fixed; right: 16px; bottom: 16px;
+      background: #263238; color: #fff;
+      padding: 10px 14px; border-radius: 8px;
+      font-size: 13px; opacity: 0;
       transition: opacity .2s;
       pointer-events: none;
     }
-    .toast.show { opacity: .95; }
+    .toast.show { opacity: 1; }
   </style>
 
   <script>
-    // Run when page is ready
     document.addEventListener("DOMContentLoaded", () => {
-      // ✅ make sure user is logged in
       requireAuth();
 
-      // ✅ set greeting
-      const name = getCurrentUserBrowser();
-      document.getElementById('welcomeText').textContent = "Hello " + name;
+      // show username
+      document.getElementById("welcomeText").textContent =
+        "Hello " + getCurrentUserBrowser();
 
-      // ✅ start inactivity timers
       setupInactivityTimers();
     });
 
-    // ✅ Manual logout using auth.js
     function doLogout() {
-      logout();               // clears localStorage + redirects to login.html
+      logout();
     }
 
-    // ✅ Auto-logout / toast logic (browser-only)
+    // ========================================
+    // AUTO LOGOUT SYSTEM
+    // ========================================
     function setupInactivityTimers() {
-      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000; // 30 minutes
-      const WARNING_MS          = 29 * 60 * 1000; // show toast at 29 minutes
+      const LIMIT = 30 * 60 * 1000;
+      const WARN  = 29 * 60 * 1000;
 
-      let inactivityTimer = null;
-      let warningTimer    = null;
-      const toast         = document.getElementById('toast');
+      let inactivity = null;
+      let warning = null;
+      const toast = document.getElementById("toast");
 
-      function resetInactivityTimers() {
-        if (inactivityTimer) clearTimeout(inactivityTimer);
-        if (warningTimer)    clearTimeout(warningTimer);
+      function resetTimers() {
+        clearTimeout(inactivity);
+        clearTimeout(warning);
 
-        toast.classList.remove('show');
+        toast.classList.remove("show");
 
-        warningTimer = setTimeout(() => {
-          toast.classList.add('show');
-        }, WARNING_MS);
-
-        inactivityTimer = setTimeout(() => {
-          logout(); // call auth.js logout
-        }, INACTIVITY_LIMIT_MS);
+        warning = setTimeout(() => toast.classList.add("show"), WARN);
+        inactivity = setTimeout(() => logout(), LIMIT);
       }
 
-      // User activity events
-      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
-        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
+      ["mousemove","mousedown","keydown","wheel","touchstart","scroll","focus"]
+      .forEach(ev => window.addEventListener(ev, resetTimers));
 
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) resetInactivityTimers();
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) resetTimers();
       });
 
-      toast.addEventListener('click', resetInactivityTimers);
+      toast.addEventListener("click", resetTimers);
 
-      // initial start
-      resetInactivityTimers();
+      resetTimers();
     }
-
-    // Prevent back-button showing cached dashboard after logout
-    window.addEventListener('pageshow', function(event) {
-      if (event.persisted) {
-        window.location.reload();
-      }
-    });
   </script>
 </head>
+
 <body>
 
-  <!-- Top bar -->
+  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="login-text">✅ Login Successful</div>
       <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="Image 1">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="Image 2">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="Image 3">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="Image 4">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s">
+        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s">
       </div>
     </div>
 
     <div class="topbar-center">
-      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png" alt="Logo">
+      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png">
     </div>
 
     <div class="topbar-right">
@@ -253,34 +178,33 @@
     </div>
   </div>
 
+  <!-- MAIN CONTENT -->
   <main>
-    <p class="subtext welcome-text">
-      Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
+    <p class="welcome-text">
+      Welcome to Shapoorji Pallonji Palm Jebel Ali – Villas Frond M & N Overall Progress Dashboard!
     </p>
-    <p class="subtext">
-      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
-      to load during the initial access.
-    </p>
+
+    <p>Please select the dashboard of your choice.</p>
 
     <div class="links">
       <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📈 POWER BI OVERALL PROGRESS DASHBOAD-FROND N
+        📈 PROGRESS DASHBOARD – FROND N
       </a>
 
       <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📉 POWER BI OVERALL PROGRESS DASHBOARD-FROND M
+        📉 PROGRESS DASHBOARD – FROND M
       </a>
     </div>
 
     <div class="project-images">
       <h3>📸 Project Highlights</h3>
-      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" alt="Project 1" class="project-img">
-      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" alt="Project 2" class="project-img">
+      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg">
+      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg">
     </div>
   </main>
 
   <div class="footer">by Sohail</div>
-  <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
+  <div id="toast" class="toast">Inactive for 10 minutes. You will be logged out in 1 minute…</div>
 
 </body>
 </html>
