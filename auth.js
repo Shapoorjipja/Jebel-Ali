@@ -8,7 +8,8 @@ const USERS = [
   { username: "pjavtime",     password: "78901" },
   { username: "pjavabc", password: "43210" },
   { username: "pjavdhre", password: "45678" },
-  { username: "Test", password: "12345" }
+  { username: "Test", password: "12345" },
+  { username: "SPML", password: "Admin@123" }
 ];
 
 const AUTH_KEY = "pjav_logged_in_user";
