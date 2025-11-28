@@ -1,5 +1,5 @@
-const SUPABASE_URL = "https://uroncgduuurzkkaatnevf.supabase.co";  // your project URL
-const SUPABASE_KEY = "sb_publishable_0ANL7iukH9a9WfWAZByFQ0_2DxJH51K";  // your publishable key
+const SUPABASE_URL = "https://uroncgduuurzkkaatnevf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_0ANL7iukH9a9WfWAZByFQ0_2DxJH51K";
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -14,8 +14,8 @@ async function submitRating() {
         .insert([{ name, rating, page, comment }]);
 
     if (error) {
-        console.error(error);
         alert("Error saving rating!");
+        console.error(error);
     } else {
         alert("Rating saved successfully!");
     }
