@@ -61,7 +61,6 @@ a {
 }
 
 /* Buttons */
-
 .btn {
     display: inline-block;
     padding: 12px 24px;
@@ -260,6 +259,85 @@ a {
     border-radius: 8px;
 }
 
+/* 📦 Rating Card on Dashboard */
+#rating-section {
+    max-width: 420px;
+    margin: 40px auto 60px auto;
+    background: #ffffff;
+    padding: 24px 22px 22px 22px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+    font-size: 0.9rem;
+}
+
+#rating-section h3 {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+}
+
+#rating-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#rating-section label {
+    font-size: 0.85rem;
+    margin-top: 6px;
+}
+
+#rating-section input,
+#rating-section textarea {
+    width: 100%;
+    padding: 9px 10px;
+    margin-top: 4px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 0.9rem;
+}
+
+#rating-section textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+
+/* Stars row */
+.stars {
+    font-size: 26px;
+    cursor: pointer;
+    margin: 6px 0 10px 0;
+}
+
+.star {
+    color: #cbd5f5;      /* light */
+    cursor: pointer;
+    transition: color 0.2s;
+    padding-right: 3px;
+}
+
+.star.selected {
+    color: #facc15;      /* gold-500 */
+}
+
+/* Rating submit button (inside card) */
+#rating-section button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 11px;
+    background: #0077aa;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+#rating-section button:hover {
+    background: #005f87;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
     .hero-text h1 {
@@ -278,5 +356,9 @@ a {
     .dash-header-right {
         align-self: stretch;
         justify-content: space-between;
+    }
+
+    #rating-section {
+        margin: 24px 12px 40px 12px;
     }
 }
