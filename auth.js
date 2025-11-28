@@ -1,52 +1,69 @@
 // auth.js
 
-// Hard-coded user list – edit as you like
+// ✅ Replace / add users here OR build from a form later
 const USERS = [
-    { username: "Sohail", password: "Palm123" },
-    { username: "PM",     password: "PMaccess" },
-    { username: "Client", password: "Client2025" }
+  { username: "Sohail", password: "Palm123" },
+  { username: "PM",     password: "PMaccess" },
+  { username: "Client", password: "Client2025" }
 ];
 
-// Key for localStorage
-const AUTH_KEY = "pjav_logged_in_user";
+const AUTH_KEY  = "pjav_logged_in_user";
 
-// Called on login form submit
+// ✅ "CheckLogin" equivalent (from Code.gs)
+function checkLoginBrowser(username, password) {
+  const match = USERS.find(
+    u => u.username.toLowerCase() === username.toLowerCase() &&
+         u.password === password
+  );
+  return !!match;
+}
+
+// ✅ "getCurrentUser" equivalent
+function getCurrentUserBrowser() {
+  return localStorage.getItem(AUTH_KEY) || "User";
+}
+
+// ✅ Handle login from the HTML form
 function handleLogin(event) {
-    event.preventDefault();
+  if (event) event.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value;
-    const errorBox = document.getElementById("error");
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const msg      = document.getElementById("msg");   // new message div
 
-    const match = USERS.find(
-        u => u.username.toLowerCase() === username.toLowerCase() && u.password === password
-    );
+  if (!username || !password) {
+    msg.textContent = "Please enter username and password.";
+    msg.className   = "msg err";
+    return;
+  }
 
-    if (!match) {
-        errorBox.textContent = "Invalid username or password.";
-        return;
-    }
+  msg.textContent = "Checking...";
+  msg.className   = "msg ok";
 
-    // Store logged in user in localStorage
-    localStorage.setItem(AUTH_KEY, match.username);
+  const ok = checkLoginBrowser(username, password);
 
-    // Redirect to dashboard
+  if (ok) {
+    localStorage.setItem(AUTH_KEY, username);
     window.location.href = "dashboard.html";
+  } else {
+    msg.textContent = "✖ Invalid username or password.";
+    msg.className   = "msg err";
+  }
 }
 
-// Utility: check logged-in state on protected pages
-function requireAuth() {
-    const user = localStorage.getItem(AUTH_KEY);
-    if (!user) {
-        window.location.href = "login.html";
-    } else {
-        const userLabel = document.getElementById("user-label");
-        if (userLabel) userLabel.textContent = "Hello " + user;
-    }
-}
-
-// Logout
+// ✅ "logout" equivalent
 function logout() {
-    localStorage.removeItem(AUTH_KEY);
+  localStorage.removeItem(AUTH_KEY);
+  window.location.href = "login.html";
+}
+
+// ✅ Protect dashboard / show "Hello <name>"
+function requireAuth() {
+  const user = localStorage.getItem(AUTH_KEY);
+  if (!user) {
     window.location.href = "login.html";
+  } else {
+    const label = document.getElementById("user-label");
+    if (label) label.textContent = "Hello " + user;
+  }
 }
