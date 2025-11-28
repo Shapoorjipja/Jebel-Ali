@@ -1,40 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Palm Jebel Ali – Villas Frond M & N | Login</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Palm Jebel Ali – Villas Frond M & N | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- shared styles for hero, buttons, etc. -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Top strip with logo + title, similar to old site */
+    .site-header {
+      position: relative;
+      width: 100%;
+      background-color: #000;
+    }
+    .site-header-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+    }
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .site-logo img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+    /* Slight shadow on hero text for better readability */
+    .hero-text h1,
+    .hero-text h2 {
+      text-shadow: 0 3px 8px rgba(0,0,0,0.65);
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Hero banner with background image -->
+  <!-- HEADER + HERO BANNER -->
+  <header class="site-header">
+    <!-- top logo bar -->
+    <div class="site-header-inner">
+      <div class="site-logo">
+        <!-- Replace logo src with your own if you prefer -->
+        <img src="https://i.postimg.cc/4NVpxtcF/shapoorji-logo.png" alt="Shapoorji Pallonji Logo">
+        <span>Shapoorji Login Page</span>
+      </div>
+    </div>
+
+    <!-- hero image + main title (uses styles from styles.css) -->
     <div class="hero-wrapper">
-        <!-- Replace img src with your real aerial image -->
-        <img src="img/hero.jpg" alt="Palm Jebel Ali Aerial">
-        <div class="hero-text">
-            <h1>Palm Jebel Ali –</h1>
-            <h2>Villas Frond M &amp; N</h2>
-        </div>
+      <!-- Background hero image – same Nakheel image as your Apps Script page -->
+      <img
+        src="https://www.nakheel.com/images/nakheelcorporatelibraries/construction-updates/pja-1920x1080-01.png?sfvrsn=70661267_1"
+        alt="Palm Jebel Ali Aerial"
+      >
+      <div class="hero-text">
+        <h1>Palm Jebel Ali-</h1>
+        <h2>Villas Frond M &amp; N</h2>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="page-container">
+    <p style="text-align:center; margin-bottom:24px; font-size:0.95rem;">
+      Welcome to Palm Jebel Ali – Villas Frond M &amp; N Project.
+    </p>
+
+    <div style="text-align:center; margin-bottom:32px;">
+      <a href="login.html" class="btn btn-primary">Login to Dashboard</a>
     </div>
 
-    <div class="page-container">
-        <p style="text-align:center; margin-bottom:24px; font-size:0.95rem;">
-            Welcome to Palm Jebel Ali – Villas Frond M &amp; N Project.
-        </p>
-
-        <div style="text-align:center;">
-            <a href="login.html" class="btn btn-primary">Login to Dashboard</a>
-        </div>
-
-        <div class="hero-image-wrapper">
-            <!-- Replace with villa perspective image -->
-            <img src="img/villa.jpg" alt="Palm Jebel Ali Villa">
-        </div>
-
-        <div class="footer-credit">
-            by Sohail
-        </div>
-    </div>
-
-</body>
-</html>
+    <!-- Villa hero image under the button
