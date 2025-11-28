@@ -25,7 +25,9 @@
       padding: 0;
     }
 
-    /* Top bar */
+    /* ───────────────────────────────────────────── */
+    /* TOP BAR */
+    /* ───────────────────────────────────────────── */
     .topbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -89,24 +91,20 @@
 
     .hello { font-size: 14px; font-weight: 600; }
 
+    /* ───────────────────────────────────────────── */
+    /* MAIN PAGE */
+    /* ───────────────────────────────────────────── */
     main {
-      padding: 140px 16px 60px;
+      padding: 120px 16px 60px;
       max-width: 1100px;
       margin: 0 auto;
+      text-align: center;
     }
 
-    .subtext { line-height: 1.6; max-width: 800px; }
+    .subtext { margin: 0 auto 6px; max-width: 980px; line-height: 1.6; }
+    .welcome-text { font-weight: 700; font-size: 20px; margin-bottom: 10px; }
 
-    .welcome-text {
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .links {
-      margin-top: 28px;
-    }
-
+    .links { margin-top: 28px; text-align: left; }
     .links a {
       display: inline-block;
       margin: 10px 10px 10px 0;
@@ -121,11 +119,8 @@
     }
     .links a:hover { background-color: var(--btnHover); }
 
-    /* Project Section */
-    .project-images {
-      margin-top: 26px;
-      text-align: center;
-    }
+    .project-images { margin-top: 26px; text-align: center; }
+    .project-images h3 { margin: 18px 0 8px; font-weight: 600; }
     .project-images img.project-img{
       max-width: 980px;
       width: 100%;
@@ -136,73 +131,6 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
-    /* ===================================
-       ⭐ RATING BOX RIGHT SIDE FIX
-    =================================== */
-    .intro-rating-row {
-      position: relative;
-      min-height: 260px;
-      margin-bottom: 20px;
-    }
-
-    #rating-section {
-      position: absolute;
-      top: 0;
-      right: 0;      /* PUSH TO EXTREME RIGHT */
-      width: 330px;
-      padding: 18px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-    }
-
-    #rating-section h3 {
-      margin-top: 0;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    #rating-section input,
-    #rating-section textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: Poppins;
-    }
-
-    .stars {
-      margin-bottom: 12px;
-    }
-
-    .star {
-      font-size: 24px;
-      cursor: pointer;
-      color: #ccc;
-    }
-
-    .star.selected {
-      color: #ff9800;
-    }
-
-    #rating-section button {
-      width: 100%;
-      background-color: #00796B;
-      border: none;
-      padding: 10px 14px;
-      color: #fff;
-      font-weight: 600;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    #rating-section button:hover {
-      background-color: #004D40;
-    }
-
-    /* Footer */
     .footer {
       position: fixed;
       bottom: 10px;
@@ -211,6 +139,74 @@
       font-style: italic;
       color: #555;
     }
+
+    /* ───────────────────────────────────────────── */
+    /* FLOATING RATING BOX */
+    /* ───────────────────────────────────────────── */
+    #rating-panel {
+      position: fixed;
+      bottom: 70px;    /* stays above “by Sohail” */
+      right: 30px;     /* push to extreme right */
+      width: 330px;
+
+      background: #ffffff;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+
+      z-index: 999999; /* always on top */
+    }
+
+    #rating-panel h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    #rating-panel input,
+    #rating-panel textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .stars { margin-bottom: 12px; }
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .star.selected { color: #ff9800; }
+
+    #rating-panel button {
+      width: 100%;
+      background: var(--btn);
+      color: #fff;
+      padding: 10px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #rating-panel button:hover { background: var(--btnHover); }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: #263238;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      opacity: 0;
+      transition: opacity .2s;
+      pointer-events: none;
+    }
+    .toast.show { opacity: .95; }
   </style>
 </head>
 
@@ -240,84 +236,79 @@
 
   <!-- MAIN CONTENT -->
   <main>
+    <p class="subtext welcome-text">
+      Welcome to Shapoorji Pallonji Palm Jebel Ali–Villas Frond M & N Overall Progress Dashboard!
+    </p>
 
-    <!-- Rating card positioned at extreme right -->
-    <div class="intro-rating-row">
-      <div>
-        <p class="welcome-text">
-          Welcome to Shapoorji Pallonji Palm Jebel Ali–Villas Frond M & N Overall Progress Dashboard!
-        </p>
+    <p class="subtext">
+      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time to load.
+    </p>
 
-        <p class="subtext">
-          Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
-          to load during the initial access.
-        </p>
-      </div>
-
-      <!-- ⭐ RATING BOX -->
-      <section id="rating-section">
-        <h3>⭐ Rate This Page</h3>
-
-        <form onsubmit="submitRating(); return false;">
-            <label>Name:</label>
-            <input type="text" id="name" required>
-
-            <label>Rating:</label>
-            <div class="stars">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-            <input type="hidden" id="rating" required>
-
-            <label>Comment (optional):</label>
-            <textarea id="comment"></textarea>
-
-            <button type="submit">Submit Rating</button>
-        </form>
-      </section>
-    </div>
-
-    <!-- Power BI links -->
     <div class="links">
-      <a href="#" target="_blank">📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N</a>
-      <a href="#" target="_blank">📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M</a>
+      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d" target="_blank">
+        📊 POWER BI FROND N
+      </a>
+
+      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba" target="_blank">
+        📊 POWER BI FROND M
+      </a>
     </div>
 
-    <!-- Project Images -->
     <div class="project-images">
       <h3>📸 Project Highlights</h3>
       <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" class="project-img">
       <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" class="project-img">
     </div>
-
   </main>
 
   <div class="footer">by Sohail</div>
+  <div id="toast" class="toast">Inactive for 10 minutes…</div>
 
-  <!-- Supabase -->
+  <!-- FLOATING RATING BOX -->
+  <div id="rating-panel">
+    <h3>⭐ Rate This Page</h3>
+
+    <label>Name:</label>
+    <input type="text" id="name" required>
+
+    <label>Rating:</label>
+    <div class="stars">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+    <input type="hidden" id="rating">
+
+    <label>Comment (optional):</label>
+    <textarea id="comment"></textarea>
+
+    <button onclick="submitRating()">Submit Rating</button>
+  </div>
+
+  <!-- SUPABASE + AUTH -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
   <script src="rating.js"></script>
 
-  <!-- Star Selection Logic -->
+  <!-- STAR LOGIC -->
   <script>
     const stars = document.querySelectorAll(".star");
     const ratingInput = document.getElementById("rating");
 
     stars.forEach(star => {
-        star.addEventListener("click", () => {
-            const value = star.getAttribute("data-value");
-            ratingInput.value = value;
+      star.addEventListener("click", () => {
+        const value = star.getAttribute("data-value");
+        ratingInput.value = value;
 
-            stars.forEach(s => {
-                s.classList.remove("selected");
-                if (s.getAttribute("data-value") <= value) {
-                    s.classList.add("selected");
-                }
-            });
+        stars.forEach(s => {
+          s.classList.remove("selected");
+          if (s.getAttribute("data-value") <= value) {
+            s.classList.add("selected");
+          }
         });
+      });
     });
   </script>
 
