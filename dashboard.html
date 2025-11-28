@@ -297,23 +297,56 @@
     }
   </script>
 
-<!-- ⭐ Rating Section ⭐ -->
 <section id="rating-section">
-  <h3>Rate This Page</h3>
+    <h3>⭐ Rate This Page</h3>
 
-  <form onsubmit="submitRating(); return false;">
-      <label>Name:</label>
-      <input type="text" id="name" required>
+    <form onsubmit="submitRating(); return false;">
+        <label>Name:</label>
+        <input type="text" id="name" required>
 
-      <label>Rating (1–5):</label>
-      <input type="number" id="rating" min="1" max="5" required>
+        <label>Rating:</label>
+        <div class="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <input type="hidden" id="rating" required>
 
-      <label>Comment:</label>
-      <textarea id="comment"></textarea>
+        <label>Comment (optional):</label>
+        <textarea id="comment"></textarea>
 
-      <button type="submit">Submit Rating</button>
-  </form>
+        <button type="submit">Submit Rating</button>
+    </form>
 </section>
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<!-- Rating Logic -->
+<script src="rating.js"></script>
+
+<!-- Star Rating Script -->
+<script>
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("rating");
+
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            const value = star.getAttribute("data-value");
+            ratingInput.value = value;
+
+            stars.forEach(s => {
+                s.classList.remove("selected");
+                if (s.getAttribute("data-value") <= value) {
+                    s.classList.add("selected");
+                }
+            });
+        });
+    });
+</script>
+
 
     
 </body>
