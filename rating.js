@@ -2,7 +2,7 @@
 
 <script>
     const SUPABASE_URL = "https://uroncgd...supabase.co";  // your project URL
-    const SUPABASE_KEY = "sb_publishable_8ANL7...";        // your publishable key
+    const SUPABASE_KEY = "sb_publishable_0ANL7iuKh9a9WFWA2ByfOQ_Z0xJH51K";        // your publishable key
 
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
