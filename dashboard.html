@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <base target="_top">
   <meta charset="utf-8" />
+  <title>PJAV – Overall Progress Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- ✅ our browser auth helper -->
+  <script src="auth.js" defer></script>
 
   <style>
     :root{
@@ -145,15 +148,86 @@
       color: #555;
     }
 
-    /* (optional) tiny warning toast at 29 minutes */
     .toast {
-      position: fixed; right: 16px; bottom: 16px;
-      background: #263238; color: #fff; padding: 10px 14px;
-      border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .2s;
+      position: fixed; 
+      right: 16px; 
+      bottom: 16px;
+      background: #263238; 
+      color: #fff; 
+      padding: 10px 14px;
+      border-radius: 8px; 
+      font-size: 13px; 
+      opacity: 0; 
+      transition: opacity .2s;
       pointer-events: none;
     }
     .toast.show { opacity: .95; }
   </style>
+
+  <script>
+    // Run when page is ready
+    document.addEventListener("DOMContentLoaded", () => {
+      // ✅ make sure user is logged in
+      requireAuth();
+
+      // ✅ set greeting
+      const name = getCurrentUserBrowser();
+      document.getElementById('welcomeText').textContent = "Hello " + name;
+
+      // ✅ start inactivity timers
+      setupInactivityTimers();
+    });
+
+    // ✅ Manual logout using auth.js
+    function doLogout() {
+      logout();               // clears localStorage + redirects to login.html
+    }
+
+    // ✅ Auto-logout / toast logic (browser-only)
+    function setupInactivityTimers() {
+      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000; // 30 minutes
+      const WARNING_MS          = 29 * 60 * 1000; // show toast at 29 minutes
+
+      let inactivityTimer = null;
+      let warningTimer    = null;
+      const toast         = document.getElementById('toast');
+
+      function resetInactivityTimers() {
+        if (inactivityTimer) clearTimeout(inactivityTimer);
+        if (warningTimer)    clearTimeout(warningTimer);
+
+        toast.classList.remove('show');
+
+        warningTimer = setTimeout(() => {
+          toast.classList.add('show');
+        }, WARNING_MS);
+
+        inactivityTimer = setTimeout(() => {
+          logout(); // call auth.js logout
+        }, INACTIVITY_LIMIT_MS);
+      }
+
+      // User activity events
+      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
+        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
+
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) resetInactivityTimers();
+      });
+
+      toast.addEventListener('click', resetInactivityTimers);
+
+      // initial start
+      resetInactivityTimers();
+    }
+
+    // Prevent back-button showing cached dashboard after logout
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -208,65 +282,5 @@
   <div class="footer">by Sohail</div>
   <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
 
-  <script>
-    /* Keep your existing greeting via Google account */
-    google.script.run.withSuccessHandler(function(name) {
-      document.getElementById('welcomeText').textContent = "Hello " + name;
-    }).getCurrentUser();
-
-    /* Manual logout */
-    function doLogout() {
-      google.script.run.withSuccessHandler(function(html) {
-        document.open();
-        document.write(html);
-        document.close();
-      }).logout();
-    }
-
-    /* -------- Auto-logout after 30 minutes of no activity -------- */
-    const INACTIVITY_LIMIT_MS = 30 * 60 * 1000; // 30 minutes
-    const WARNING_MS = 29 * 60 * 1000;          // show toast at 29 minutes
-
-    let inactivityTimer = null;
-    let warningTimer = null;
-
-    function resetInactivityTimers() {
-      if (inactivityTimer) clearTimeout(inactivityTimer);
-      if (warningTimer) clearTimeout(warningTimer);
-
-      // hide toast if visible
-      document.getElementById('toast').classList.remove('show');
-
-      // schedule warning
-      warningTimer = setTimeout(() => {
-        document.getElementById('toast').classList.add('show');
-      }, WARNING_MS);
-
-      // schedule auto logout
-      inactivityTimer = setTimeout(() => {
-        doLogout();
-      }, INACTIVITY_LIMIT_MS);
-    }
-
-    // Treat these as user activity
-    ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
-      .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
-
-    // Reset when tab becomes visible again
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) resetInactivityTimers();
-    });
-
-    // Click the toast to extend session
-    document.getElementById('toast').addEventListener('click', resetInactivityTimers);
-
-    // Start timers on load
-    resetInactivityTimers();
-
-    // Prevent cached back navigation after logout
-    window.addEventListener('pageshow', function(event) {
-      if (event.persisted) { window.location.reload(); }
-    });
-  </script>
 </body>
 </html>
