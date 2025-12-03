@@ -25,7 +25,7 @@
       padding: 0;
     }
 
-    /* ────────────────── TOP BAR ────────────────── */
+    /* Top bar */
     .topbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -87,9 +87,11 @@
     }
     .logout-btn:hover { background: var(--dangerHover); }
 
-    .hello { font-size: 14px; font-weight: 600; }
+    .hello {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-    /* ────────────────── MAIN CONTENT ────────────────── */
     main {
       padding: 120px 16px 60px;
       max-width: 1100px;
@@ -97,10 +99,23 @@
       text-align: center;
     }
 
-    .subtext { margin: 0 auto 6px; max-width: 980px; line-height: 1.6; }
-    .welcome-text { font-weight: 700; font-size: 20px; margin-bottom: 10px; }
+    .subtext {
+      margin: 0 auto 6px;
+      max-width: 980px;
+      line-height: 1.6;
+    }
 
-    .links { margin-top: 28px; text-align: left; }
+    .welcome-text {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .links {
+      margin-top: 28px;
+      text-align: left;
+    }
+
     .links a {
       display: inline-block;
       margin: 10px 10px 10px 0;
@@ -115,8 +130,14 @@
     }
     .links a:hover { background-color: var(--btnHover); }
 
-    .project-images { margin-top: 26px; text-align: center; }
-    .project-images h3 { margin: 18px 0 8px; font-weight: 600; }
+    .project-images {
+      margin-top: 26px;
+      text-align: center;
+    }
+    .project-images h3 {
+      margin: 18px 0 8px;
+      font-weight: 600;
+    }
     .project-images img.project-img{
       max-width: 980px;
       width: 100%;
@@ -134,60 +155,8 @@
       font-size: 14px;
       font-style: italic;
       color: #555;
-      z-index: 900;
     }
 
-    /* ────────────────── FLOATING RATING BOX ────────────────── */
-    #rating-panel {
-      position: fixed;
-      bottom: 70px;     /* sits above “by Sohail” */
-      right: 30px;      /* extreme right */
-      width: 330px;
-      background: #ffffff;
-      padding: 18px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-      z-index: 999999;  /* above everything */
-    }
-
-    #rating-panel h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    #rating-panel input,
-    #rating-panel textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: inherit;
-      font-size: 14px;
-    }
-
-    .stars { margin-bottom: 12px; }
-    .star {
-      font-size: 24px;
-      cursor: pointer;
-      color: #ccc;
-    }
-    .star.selected { color: #ff9800; }
-
-    #rating-panel button {
-      width: 100%;
-      background: var(--btn);
-      color: #fff;
-      padding: 10px;
-      font-weight: 600;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    #rating-panel button:hover { background: var(--btnHover); }
-
-    /* Toast (optional, for inactivity if you decide to use later) */
     .toast {
       position: fixed;
       right: 16px;
@@ -204,18 +173,17 @@
     .toast.show { opacity: .95; }
   </style>
 </head>
-
 <body>
 
-  <!-- TOP BAR -->
+  <!-- Top bar -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="login-text">✅ Login Successful</div>
       <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="Logo1">
+        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="Logo2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="Logo3">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="Logo4">
       </div>
     </div>
 
@@ -229,25 +197,22 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
   <main>
     <p class="subtext welcome-text">
-      Welcome to Shapoorji Pallonji Palm Jebel Ali–Villas Frond M & N Overall Progress Dashboard!
+      Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
     </p>
-
     <p class="subtext">
-      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time to load during the initial access.
+      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
+      to load during the initial access.
     </p>
 
     <div class="links">
-      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7"
-         target="_blank">
-        📊 POWER BI FROND N
+      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
+        📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
       </a>
 
-      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7"
-         target="_blank">
-        📊 POWER BI FROND M
+      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
+        📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
       </a>
     </div>
 
@@ -259,117 +224,77 @@
   </main>
 
   <div class="footer">by Sohail</div>
-  <div id="toast" class="toast">Inactive for 10 minutes…</div>
+  <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
 
-  <!-- FLOATING RATING BOX -->
-  <div id="rating-panel">
-    <h3>⭐ Rate This Page</h3>
-
-    <label>Name:</label>
-    <input type="text" id="name" required>
-
-    <label>Rating:</label>
-    <div class="stars">
-      <span class="star" data-value="1">★</span>
-      <span class="star" data-value="2">★</span>
-      <span class="star" data-value="3">★</span>
-      <span class="star" data-value="4">★</span>
-      <span class="star" data-value="5">★</span>
-    </div>
-    <input type="hidden" id="rating">
-
-    <label>Comment (optional):</label>
-    <textarea id="comment"></textarea>
-
-    <button onclick="submitRating()">Submit Rating</button>
-  </div>
-
-  <!-- LIBS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="auth.js"></script>   <!-- your existing auth helper -->
-  <script src="rating.js"></script> <!-- your Supabase insert code -->
-
-  <!-- AUTH + LOGOUT + NAME DISPLAY -->
+  <!-- Auth + session protection -->
+  <script src="auth.js"></script>
   <script>
+    // On load: if not logged in, kick back to login
     document.addEventListener("DOMContentLoaded", () => {
-      let username = "";
-
-      // 1) If auth.js exposes getCurrentUserBrowser() use that
-      if (typeof getCurrentUserBrowser === "function") {
-        username = getCurrentUserBrowser() || "";
-      }
-
-      // 2) Fallback to common localStorage keys
-      if (!username) {
-        username =
-          localStorage.getItem("pjav_logged_in_user") ||
-          localStorage.getItem("username") ||
-          "";
-      }
-
-      // 3) If still nothing, force login
-      if (!username) {
+      if (!localStorage.getItem("pjav_logged_in_user")) {
         window.location.replace("login.html");
         return;
       }
 
-      // 4) Show name in header
-      const welcomeEl = document.getElementById("welcomeText");
-      if (welcomeEl) {
-        welcomeEl.textContent = "Hello " + username;
-      }
+      // show username
+      const name = getCurrentUserBrowser ? getCurrentUserBrowser() : localStorage.getItem("pjav_logged_in_user");
+      document.getElementById('welcomeText').textContent = "Hello " + name;
+
+      setupInactivityTimers();
     });
 
     function logoutUser() {
-      try {
-        // If auth.js exposes a logout helper, call it
-        if (typeof logoutCurrentUser === "function") {
-          logoutCurrentUser();
-        }
-      } catch (e) {
-        console.warn("Custom logout function error:", e);
-      }
-
-      // Clear any stored session info (safe for this small app)
-      try {
-        localStorage.clear();
-      } catch (e) {}
-
-      // Redirect back to login
-      window.location.href = "login.html";
+      // clear key used in auth.js
+      localStorage.removeItem("pjav_logged_in_user");
+      window.location.replace("login.html");
     }
 
-    // Prevent seeing dashboard again after logout using browser Back
+    // Prevent cached dashboard from showing after logout via back button
     window.addEventListener("pageshow", function (event) {
       if (event.persisted) {
-        // Page was loaded from cache
-        if (!localStorage.getItem("pjav_logged_in_user") &&
-            typeof getCurrentUserBrowser !== "function") {
+        // if no session, redirect immediately
+        if (!localStorage.getItem("pjav_logged_in_user")) {
           window.location.replace("login.html");
+        } else {
+          window.location.reload();
         }
       }
     });
-  </script>
 
-  <!-- STAR HIGHLIGHT LOGIC -->
-  <script>
-    const stars = document.querySelectorAll(".star");
-    const ratingInput = document.getElementById("rating");
+    // ---- Optional: Auto-logout on inactivity (30 min) ----
+    function setupInactivityTimers() {
+      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000;
+      const WARNING_MS = 29 * 60 * 1000;
 
-    stars.forEach(star => {
-      star.addEventListener("click", () => {
-        const value = star.getAttribute("data-value");
-        ratingInput.value = value;
+      let inactivityTimer = null;
+      let warningTimer = null;
+      const toast = document.getElementById('toast');
 
-        stars.forEach(s => {
-          s.classList.remove("selected");
-          if (s.getAttribute("data-value") <= value) {
-            s.classList.add("selected");
-          }
-        });
+      function resetInactivityTimers() {
+        if (inactivityTimer) clearTimeout(inactivityTimer);
+        if (warningTimer) clearTimeout(warningTimer);
+        toast.classList.remove('show');
+
+        warningTimer = setTimeout(() => {
+          toast.classList.add('show');
+        }, WARNING_MS);
+
+        inactivityTimer = setTimeout(() => {
+          logoutUser();
+        }, INACTIVITY_LIMIT_MS);
+      }
+
+      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
+        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
+
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) resetInactivityTimers();
       });
-    });
-  </script>
 
+      toast.addEventListener('click', resetInactivityTimers);
+
+      resetInactivityTimers();
+    }
+  </script>
 </body>
 </html>
