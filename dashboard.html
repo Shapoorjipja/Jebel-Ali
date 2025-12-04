@@ -155,6 +155,7 @@
       font-size: 14px;
       font-style: italic;
       color: #555;
+      z-index: 1050;
     }
 
     .toast {
@@ -169,8 +170,80 @@
       opacity: 0;
       transition: opacity .2s;
       pointer-events: none;
+      z-index: 1100;
     }
     .toast.show { opacity: .95; }
+
+    /* Floating info card (credentials) */
+    .floating-info-card {
+      position: fixed;
+      right: 20px;
+      bottom: 60px; /* sits just above "by Sohail" */
+      width: 340px;
+      max-width: 90vw;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      padding: 18px 20px 16px;
+      z-index: 1200;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .floating-info-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .floating-info-card h3 span.icon {
+      font-size: 18px;
+    }
+
+    .floating-info-card .info-line {
+      margin: 4px 0;
+      font-size: 13px;
+    }
+
+    .floating-info-card .info-line strong {
+      display: inline-block;
+      min-width: 78px;
+    }
+
+    .floating-info-card .info-line code {
+      background: #f1f5f9;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .floating-info-card .info-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 768px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .topbar-right {
+        align-self: stretch;
+        justify-content: space-between;
+      }
+
+      .floating-info-card {
+        right: 12px;
+        left: 12px;
+        bottom: 70px;
+        width: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -223,6 +296,22 @@
     </div>
   </main>
 
+  <!-- Floating credentials card -->
+  <div class="floating-info-card">
+    <h3><span class="icon">🔐</span> SPML Organization SPACE Credentials</h3>
+    <p class="info-line">
+      <strong>Username:</strong>
+      <code>Powerbi.pja@shapoorji.com</code>
+    </p>
+    <p class="info-line">
+      <strong>Password:</strong>
+      <code>R$212668802873ow</code>
+    </p>
+    <p class="info-note">
+      Use these credentials only for accessing the Power BI dashboards linked on this page.
+    </p>
+  </div>
+
   <div class="footer">by Sohail</div>
   <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
 
@@ -237,7 +326,10 @@
       }
 
       // show username
-      const name = getCurrentUserBrowser ? getCurrentUserBrowser() : localStorage.getItem("pjav_logged_in_user");
+      const name = (typeof getCurrentUserBrowser === "function")
+        ? getCurrentUserBrowser()
+        : localStorage.getItem("pjav_logged_in_user");
+
       document.getElementById('welcomeText').textContent = "Hello " + name;
 
       setupInactivityTimers();
@@ -252,7 +344,6 @@
     // Prevent cached dashboard from showing after logout via back button
     window.addEventListener("pageshow", function (event) {
       if (event.persisted) {
-        // if no session, redirect immediately
         if (!localStorage.getItem("pjav_logged_in_user")) {
           window.location.replace("login.html");
         } else {
@@ -261,7 +352,7 @@
       }
     });
 
-    // ---- Optional: Auto-logout on inactivity (30 min) ----
+    // ---- Auto-logout on inactivity (30 min) ----
     function setupInactivityTimers() {
       const INACTIVITY_LIMIT_MS = 30 * 60 * 1000;
       const WARNING_MS = 29 * 60 * 1000;
