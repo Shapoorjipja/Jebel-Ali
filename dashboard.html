@@ -174,11 +174,11 @@
     }
     .toast.show { opacity: .95; }
 
-    /* Floating info card (credentials) */
+    /* Floating credentials card */
     .floating-info-card {
       position: fixed;
       right: 20px;
-      bottom: 60px; /* sits just above "by Sohail" */
+      bottom: 60px;
       width: 340px;
       max-width: 90vw;
       background: #ffffff;
@@ -197,10 +197,6 @@
       display: flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .floating-info-card h3 span.icon {
-      font-size: 18px;
     }
 
     .floating-info-card .info-line {
@@ -246,146 +242,90 @@
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <div class="login-text">✅ Login Successful</div>
-      <div class="image-row">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s" alt="Logo1">
-        <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg" alt="Logo2">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s" alt="Logo3">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s" alt="Logo4">
-      </div>
-    </div>
-
-    <div class="topbar-center">
-      <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png" alt="Palm Jebel Ali">
-    </div>
-
-    <div class="topbar-right">
-      <button class="logout-btn" onclick="logoutUser()">Logout</button>
-      <div id="welcomeText" class="hello">Hello</div>
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="login-text">✅ Login Successful</div>
+    <div class="image-row">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnFotK6q51zkn2-D63JAu73KsQnfkTv4OXIg&s">
+      <img src="https://cdn.prod.website-files.com/677c6c9cc13874f7aa42b6f7/677c6c9cc13874f7aa42b7dc_AW_DH_PV_POS_RGB_EN.jpg">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJabjv8qbfkZJM67Weku98N_9uadTiO0To6w&s">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyA_JadsqCocV2wtxiGjcXRdTewua1kvPzLA&s">
     </div>
   </div>
 
-  <main>
-    <p class="subtext welcome-text">
-      Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
-    </p>
-    <p class="subtext">
-      Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
-      to load during the initial access.
-    </p>
-
-    <div class="links">
-      <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
-      </a>
-
-      <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
-        📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
-      </a>
-    </div>
-
-    <div class="project-images">
-      <h3>📸 Project Highlights</h3>
-      <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" alt="Project 1" class="project-img">
-      <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" alt="Project 2" class="project-img">
-    </div>
-  </main>
-
-  <!-- Floating credentials card -->
-  <div class="floating-info-card">
-    <h3><span class="icon">🔐</span> SPML Organization SPACE Credentials</h3>
-    <p class="info-line">
-      <strong>Username:</strong>
-      <code>Powerbi.pja@shapoorji.com</code>
-    </p>
-    <p class="info-line">
-      <strong>Password:</strong>
-      <code>R$212668802873ow</code>
-    </p>
-    <p class="info-note">
-      Use these credentials only for accessing the Power BI dashboards linked on this page.
-    </p>
+  <div class="topbar-center">
+    <img src="https://i.postimg.cc/wvK7gp5J/palm-jebel-ali.png">
   </div>
 
-  <div class="footer">by Sohail</div>
-  <div id="toast" class="toast">Inactive for 10 minutes. You’ll be logged out in 1 minute…</div>
+  <div class="topbar-right">
+    <button class="logout-btn" onclick="logoutUser()">Logout</button>
+    <div id="welcomeText" class="hello">Hello</div>
+  </div>
+</div>
 
-  <!-- Auth + session protection -->
-  <script src="auth.js"></script>
-  <script>
-    // On load: if not logged in, kick back to login
-    document.addEventListener("DOMContentLoaded", () => {
-      if (!localStorage.getItem("pjav_logged_in_user")) {
-        window.location.replace("login.html");
-        return;
-      }
+<main>
+  <p class="subtext welcome-text">
+    Welcome to Shapoorji Pallonji Palm Jebel Ali-Villas Frond M &amp; N Overall Progress Dashboard!
+  </p>
 
-      // show username
-      const name = (typeof getCurrentUserBrowser === "function")
-        ? getCurrentUserBrowser()
-        : localStorage.getItem("pjav_logged_in_user");
+  <p class="subtext">
+    Please select the dashboard of your choice to view. Kindly note that the 3D model may take some time
+    to load during the initial access.
+  </p>
 
-      document.getElementById('welcomeText').textContent = "Hello " + name;
+  <!-- DASHBOARD LINKS -->
+  <div class="links">
+    <a href="https://app.powerbi.com/reportEmbed?reportId=347752d8-5add-4590-a655-02c3582fce2d&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
+      📈 POWER BI OVERALL PROGRESS DASHBOARD – FROND N
+    </a>
 
-      setupInactivityTimers();
-    });
+    <a href="https://app.powerbi.com/reportEmbed?reportId=648c082b-303d-41f6-9c89-c9f1c1b0bcba&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
+      📉 POWER BI OVERALL PROGRESS DASHBOARD – FROND M
+    </a>
 
-    function logoutUser() {
-      // clear key used in auth.js
-      localStorage.removeItem("pjav_logged_in_user");
+    <a href="https://app.powerbi.com/reportEmbed?reportId=db925a68-5d5e-409d-bdfe-1771171059b3&autoAuth=true&ctid=144bc3d6-4657-4cf6-b6f0-901cdeb373a7" target="_blank">
+      🛠️ POWER BI ENGINEERING DASHBOARD
+    </a>
+  </div>
+
+  <div class="project-images">
+    <h3>📸 Project Highlights</h3>
+    <img src="https://i.postimg.cc/zGXw62SN/BVA.jpg" class="project-img">
+    <img src="https://i.postimg.cc/ZnLmB5M1/SVH.jpg" class="project-img">
+  </div>
+</main>
+
+<div class="floating-info-card">
+  <h3>🔐 SPML Organization SPACE Credentials</h3>
+  <p class="info-line"><strong>Username:</strong> <code>Powerbi.pja@shapoorji.com</code></p>
+  <p class="info-line"><strong>Password:</strong> <code>R$212668802873ow</code></p>
+  <p class="info-note">
+    Use these credentials only for accessing the Power BI dashboards linked on this page.
+  </p>
+</div>
+
+<div class="footer">by Sohail</div>
+
+<script src="auth.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("pjav_logged_in_user")) {
       window.location.replace("login.html");
+      return;
     }
+    document.getElementById('welcomeText').textContent =
+      "Hello " + localStorage.getItem("pjav_logged_in_user");
+  });
 
-    // Prevent cached dashboard from showing after logout via back button
-    window.addEventListener("pageshow", function (event) {
-      if (event.persisted) {
-        if (!localStorage.getItem("pjav_logged_in_user")) {
-          window.location.replace("login.html");
-        } else {
-          window.location.reload();
-        }
-      }
-    });
+  function logoutUser() {
+    localStorage.removeItem("pjav_logged_in_user");
+    window.location.replace("login.html");
+  }
+</script>
 
-    // ---- Auto-logout on inactivity (30 min) ----
-    function setupInactivityTimers() {
-      const INACTIVITY_LIMIT_MS = 30 * 60 * 1000;
-      const WARNING_MS = 29 * 60 * 1000;
-
-      let inactivityTimer = null;
-      let warningTimer = null;
-      const toast = document.getElementById('toast');
-
-      function resetInactivityTimers() {
-        if (inactivityTimer) clearTimeout(inactivityTimer);
-        if (warningTimer) clearTimeout(warningTimer);
-        toast.classList.remove('show');
-
-        warningTimer = setTimeout(() => {
-          toast.classList.add('show');
-        }, WARNING_MS);
-
-        inactivityTimer = setTimeout(() => {
-          logoutUser();
-        }, INACTIVITY_LIMIT_MS);
-      }
-
-      ['mousemove','mousedown','keydown','wheel','touchstart','scroll','focus']
-        .forEach(evt => window.addEventListener(evt, resetInactivityTimers, {passive:true}));
-
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) resetInactivityTimers();
-      });
-
-      toast.addEventListener('click', resetInactivityTimers);
-
-      resetInactivityTimers();
-    }
-  </script>
 </body>
 </html>
