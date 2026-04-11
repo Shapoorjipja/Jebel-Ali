@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Palm Jebel Ali – Villas Frond M & N | Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* HEADER SECTION */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f5f7fb;
+    }
+
+    /* HEADER */
     .site-header {
       position: relative;
       width: 100%;
-      background-color: #000;
     }
 
     .site-header-inner {
@@ -26,7 +31,6 @@
       align-items: center;
       padding: 10px 16px;
       color: #fff;
-      font-family: "Poppins", sans-serif;
     }
 
     .site-logo {
@@ -39,44 +43,77 @@
 
     .site-logo img {
       height: 32px;
-      width: auto;
-      object-fit: contain;
     }
 
-    /* HERO TITLE TEXT */
+    /* HERO */
+    .hero-wrapper {
+      position: relative;
+    }
+
+    .hero-wrapper img {
+      width: 100%;
+      display: block;
+    }
+
     .hero-text {
-      text-align: center;
       position: absolute;
       top: 46%;
       left: 50%;
       transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
       width: 100%;
-      color: white;
       padding: 0 20px;
     }
 
     .hero-text h1 {
-      font-size: 58px;
+      font-size: 56px;
       font-weight: 700;
       margin: 0;
-      white-space: nowrap;
       text-shadow: 0 3px 8px rgba(0,0,0,0.65);
+      white-space: nowrap;
     }
 
-    .hero-text h2 {
-      font-size: 36px;
+    /* MAIN */
+    .page-container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* BUTTONS */
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
       font-weight: 600;
-      margin: 10px 0 0 0;
-      white-space: nowrap;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.65);
+      color: #fff;
+      background: #0077aa;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #005f88;
+    }
+
+    .btn img {
+      height: 20px;
     }
 
     /* SLIDER */
     .slider-container {
       max-width: 950px;
-      width: 100%;
-      margin: 30px auto 40px auto;
-      position: relative;
+      margin: 30px auto 40px;
       overflow: hidden;
       border-radius: 12px;
     }
@@ -93,12 +130,9 @@
     .slide img {
       width: 100%;
       display: block;
-      border-radius: 12px;
     }
 
-    /* DOTS */
     .slider-dots {
-      text-align: center;
       margin-top: 12px;
     }
 
@@ -106,20 +140,19 @@
       height: 10px;
       width: 10px;
       margin: 0 4px;
-      background-color: #bbb;
+      background: #bbb;
       border-radius: 50%;
       display: inline-block;
-      transition: 0.3s;
       cursor: pointer;
     }
 
     .dot.active {
-      background-color: #0077aa;
+      background: #0077aa;
       width: 14px;
       border-radius: 8px;
     }
 
-    /* FOOTER CREDIT (BOTTOM RIGHT FIXED) */
+    /* FOOTER */
     .footer-credit {
       position: fixed;
       bottom: 12px;
@@ -129,16 +162,14 @@
       border-radius: 999px;
       font-size: 12px;
       color: #555;
-      font-weight: 500;
       box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-      z-index: 2000;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER + HERO -->
+  <!-- HEADER -->
   <header class="site-header">
     <div class="site-header-inner">
       <div class="site-logo">
@@ -148,45 +179,43 @@
     </div>
 
     <div class="hero-wrapper">
-      <img
-        src="https://www.nakheel.com/images/nakheelcorporatelibraries/construction-updates/pja-1920x1080-01.png?sfvrsn=70661267_1"
-        alt="Palm Jebel Ali Aerial"
-        style="width:100%; height:auto;"
-      >
+      <img src="https://www.nakheel.com/images/nakheelcorporatelibraries/construction-updates/pja-1920x1080-01.png">
       <div class="hero-text">
         <h1>Palm Jebel Ali – Villas Frond M & N</h1>
-        <h2></h2>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="page-container">
 
-    <p style="text-align:center; margin-bottom:24px; font-size:1.4rem; font-weight:600;">
-      Welcome to Palm Jebel Ali – Villas Frond M &amp; N Project. By Shapoorji Pallonji
+    <p style="font-size:1.4rem; font-weight:600;">
+      Welcome to Palm Jebel Ali – Villas Frond M & N Project. By Shapoorji Pallonji
     </p>
 
-    <div style="text-align:center; margin-bottom:32px;">
-      <a href="login.html" class="btn btn-primary">Login to Dashboard</a>
+    <!-- ✅ BUTTONS -->
+    <div class="btn-group">
+      <a href="login.html" class="btn">
+	
+	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/55/Shapoorji_Pallonji_Group_logo.svg/250px-Shapoorji_Pallonji_Group_logo.svg.png">
+        Login to Dashboard.   .    .
+	<img src="https://www.kyubit.com/images/dashboards/dashboard-design-layout-style.png">
+      </a>
+
+      <a href="https://shapoorji.cupix-eu.works" class="btn" target="_blank">
+        <img src="https://assets-global.website-files.com/60a1d24dc3ad906020ec0b79/60a1d24dc3ad90b5b5ec0d96_cupix_tagline-p-500.png">
+        Login to Cupix Platform.
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7nrNFOJiVhrDRNfKl8S1-h5VARW9QhqwJ7Q&s">
+      </a>
     </div>
 
-    <!-- IMAGE SLIDER -->
+    <!-- SLIDER -->
     <div class="slider-container">
-
       <div class="slider-track">
-        <div class="slide">
-          <img src="https://i.postimg.cc/XNB7s7cx/BVA.jpg" alt="Villa A">
-        </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/jqndMdQh/BVB.jpg" alt="Villa B">
-        </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/T25YtYq0/BVD.jpg" alt="Villa D">
-        </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/6645M5Lg/BVF.jpg" alt="Villa F">
-        </div>
+        <div class="slide"><img src="https://i.postimg.cc/XNB7s7cx/BVA.jpg"></div>
+        <div class="slide"><img src="https://i.postimg.cc/jqndMdQh/BVB.jpg"></div>
+        <div class="slide"><img src="https://i.postimg.cc/T25YtYq0/BVD.jpg"></div>
+        <div class="slide"><img src="https://i.postimg.cc/6645M5Lg/BVF.jpg"></div>
       </div>
 
       <div class="slider-dots">
@@ -195,39 +224,28 @@
         <span class="dot"></span>
         <span class="dot"></span>
       </div>
-
     </div>
 
   </main>
 
-  <!-- FIXED FOOTER CREDIT -->
   <div class="footer-credit">by Sohail</div>
 
   <!-- SLIDER SCRIPT -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const track = document.querySelector(".slider-track");
-      const dots = document.querySelectorAll(".dot");
-      const totalSlides = track.children.length;
+    const track = document.querySelector(".slider-track");
+    const dots = document.querySelectorAll(".dot");
+    let index = 0;
 
-      let index = 0;
+    function showSlide(i) {
+      const slides = track.children.length;
+      index = (i + slides) % slides;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(d => d.classList.remove("active"));
+      dots[index].classList.add("active");
+    }
 
-      function showSlide(i) {
-        index = (i + totalSlides) % totalSlides;
-        track.style.transform = `translateX(-${index * 100}%)`;
-
-        dots.forEach(d => d.classList.remove("active"));
-        dots[index].classList.add("active");
-      }
-
-      setInterval(() => {
-        showSlide(index + 1);
-      }, 4000);
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener("click", () => showSlide(i));
-      });
-    });
+    setInterval(() => showSlide(index + 1), 4000);
+    dots.forEach((dot, i) => dot.addEventListener("click", () => showSlide(i)));
   </script>
 
 </body>
